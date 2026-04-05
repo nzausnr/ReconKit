@@ -737,22 +737,22 @@
         <a href="#" class="footer-social-link" title="Instagram" aria-label="Instagram">
           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
         </a>
-        <a href="mailto:#" class="footer-social-link" title="Email" aria-label="Email">
+        <a href="/cdn-cgi/l/email-protection#0d2e" class="footer-social-link" title="Email" aria-label="Email">
           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
         </a>
       </div>
       <div class="footer-bottom-row">
         <span>&#169; 2026 ReconKit</span>
         <span class="footer-link-divider">&#183;</span>
-        <a href="#" class="footer-link">Privacy</a>
+        <a href="privacy.html" class="footer-link">Privacy</a>
         <span class="footer-link-divider">|</span>
-        <a href="#" class="footer-link">Terms</a>
+        <a href="terms.html" class="footer-link">Terms</a>
       </div>
     </div>
   </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // Theme system (same as main app)
 (function initTheme() {
   const saved = localStorage.getItem('rk_theme');
@@ -809,11 +809,4 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!localStorage.getItem('rk_theme')) {
       const theme = e.matches ? 'dark' : 'light';
       document.documentElement.setAttribute('data-theme', theme);
-      const toggleBtn = document.getElementById('themeToggle');
-      if (toggleBtn) toggleBtn.textContent = theme === 'dark' ? '🌙' : '☀️';
-    }
-  });
-});
-</script>
-</body>
-</html>
+      const toggleBtn = document.getElementById('themeTo
