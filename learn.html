@@ -22,46 +22,21 @@
       <path d="M2564.238,2420.863l-205.523,-204.364c649.341,-653.023 1503.795,-959.2 2290.191,-957.612c750.353,1.514 1553.165,256.371 2282.588,942.656l-198.607,211.091c-666.486,-627.07 -1398.956,-862.529 -2084.566,-863.912c-715.711,-1.444 -1493.108,277.817 -2084.083,872.142Z"/>
     </svg>
     <span class="brand-name">ReconKit</span>
-    <span class="brand-tag">v1.3</span>
+    <span class="brand-tag">v1.0</span>
   </div>
 
   <div class="nav-tools" id="navTools">
-    <div class="nav-section">
-      <p class="nav-category-title">ReconKit</p>
-      <ul>
-        <li><a class="nav-link" href="index.html" style="text-decoration:none"><span class="nav-icon">◉</span> Exposure</a></li>
-      </ul>
-    </div>
-
-    <div class="nav-section">
-      <p class="nav-category-title">Intelligence</p>
-      <ul>
-        <li><a class="nav-link" href="index.html" style="text-decoration:none"><span class="nav-icon">◈</span> IP Lookup</a></li>
-        <li><a class="nav-link" href="index.html" style="text-decoration:none"><span class="nav-icon">◇</span> Domain</a></li>
-        <li><a class="nav-link" href="index.html" style="text-decoration:none"><span class="nav-icon">◆</span> DNS</a></li>
-        <li><a class="nav-link" href="index.html" style="text-decoration:none"><span class="nav-icon">◐</span> SSL</a></li>
-        <li><a class="nav-link" href="index.html" style="text-decoration:none"><span class="nav-icon">≡</span> Headers</a></li>
-        <li><a class="nav-link" href="index.html" style="text-decoration:none"><span class="nav-icon">⚠</span> Breach</a></li>
-        <li><a class="nav-link" href="index.html" style="text-decoration:none"><span class="nav-icon">@</span> Username</a></li>
-      </ul>
-    </div>
-
-    <div class="nav-section">
-      <p class="nav-category-title">Tools</p>
-      <ul>
-        <li><a class="nav-link" href="index.html" style="text-decoration:none"><span class="nav-icon">⚙</span> Utilities</a></li>
-      </ul>
-    </div>
-
-    <div class="nav-section">
-      <p class="nav-category-title">Pages</p>
-      <ul>
-        <li><a class="nav-link active" href="learn.html" style="text-decoration:none"><span class="nav-icon">▸</span> Learn</a></li>
-      </ul>
-    </div>
+    <a class="nav-btn" href="index.html" style="text-decoration:none"><span class="nav-icon">◉</span> Exposure</a>
+    <a class="nav-btn" href="index.html" style="text-decoration:none"><span class="nav-icon">◈</span> IP Lookup</a>
+    <a class="nav-btn" href="index.html" style="text-decoration:none"><span class="nav-icon">◇</span> Domain</a>
+    <a class="nav-btn" href="index.html" style="text-decoration:none"><span class="nav-icon">◆</span> DNS</a>
+    <a class="nav-btn" href="index.html" style="text-decoration:none"><span class="nav-icon">◐</span> SSL</a>
+    <a class="nav-btn" href="index.html" style="text-decoration:none"><span class="nav-icon">≡</span> Headers</a>
+    <a class="nav-btn" href="index.html" style="text-decoration:none"><span class="nav-icon">⚠</span> Breach</a>
+    <a class="nav-btn" href="index.html" style="text-decoration:none"><span class="nav-icon">@</span> Username</a>
+    <a class="nav-btn" href="index.html" style="text-decoration:none"><span class="nav-icon">⚙</span> Utilities</a>
+    <a class="nav-btn active" href="learn.html" style="text-decoration:none"><span class="nav-icon">▸</span> Learn Page</a>
   </div>
-
-  <div id="navOverlay" class="nav-overlay"></div>
 
   <div class="nav-right">
     <div class="live-indicator">
@@ -805,19 +780,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Hamburger for mobile
-  const navTools = document.getElementById('navTools');
   document.getElementById('hamburger')?.addEventListener('click', () => {
-    navTools?.classList.toggle('mobile-open');
-  });
-
-  // Close drawer when clicking on nav links (mobile only)
-  const navLinks = navTools?.querySelectorAll('.nav-btn');
-  navLinks?.forEach(link => {
-    link.addEventListener('click', () => {
-      if (window.matchMedia('(max-width: 640px)').matches) {
-        navTools.classList.remove('mobile-open');
-      }
-    });
+    document.getElementById('navTools')?.classList.toggle('mobile-open');
   });
 
   // Article navigation
