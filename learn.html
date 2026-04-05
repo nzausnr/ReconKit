@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ReconKit — Learn & Protect</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="nav-brand">
+    <svg class="brand-hex" viewBox="0 0 9290 10550" fill="currentColor" style="fill-rule:evenodd;clip-rule:evenodd;" xmlns="http://www.w3.org/2000/svg">
+      <path d="M7738.643,8437.781c-229.147,205.572 -467.789,389.697 -703.908,565.479c-1114.948,830.036 -2030.496,1278.165 -2386.121,1546.74c-355.625,-268.575 -1271.173,-716.704 -2386.121,-1546.74c-992.158,-738.624 -2028.857,-1624.56 -2218.492,-3629.979c-111.076,-1174.645 409.417,-2019.546 -40.326,-3703.83c1127.549,-252.01 1302.457,-501.795 2350.921,-926.39c1008.709,-408.496 2249.348,-679.248 2294.019,-743.06c44.67,63.812 1285.309,334.564 2294.019,743.06c592.116,239.789 905.621,423.824 1269.45,583.993l-404.946,443.285c-292.314,-138.849 -597.246,-297.542 -1080.732,-493.339c-770.318,-311.955 -1676.519,-542.881 -2077.79,-662.424c-401.271,119.543 -1307.472,350.469 -2077.79,662.424c-888.25,359.714 -1173.841,594.193 -1885.724,810.47c113.005,657.268 90.599,1193.023 38.614,1685.485c-55.892,529.474 -157.93,999.179 -106.212,1546.096c168.79,1784.975 1105.891,2564.706 1988.987,3222.137c849.226,632.217 1582.847,1043.31 2042.125,1322.249c459.279,-278.939 1192.899,-690.032 2042.125,-1322.249c78.746,-58.623 157.921,-118.219 236.942,-179.413l10.745,11.292c39.325,41.324 93.875,64.716 150.92,64.716l649.296,0Zm1441.876,-6254.901c-232.519,1355.506 171.895,2141.487 72.709,3190.401c-108.025,1142.381 -490.921,1921.492 -983.874,2517.039l-399.044,-428.385c406.495,-515.525 718.763,-1184.225 809.416,-2142.885c51.717,-546.917 -50.321,-1016.622 -106.212,-1546.096c-29.149,-276.132 -48.998,-565.875 -40.89,-883.02l647.896,-707.054Z"/>
+      <path d="M757.074,3054.361l2588.592,0c1143.381,107.417 1565.839,1035.322 1578.218,1703.075c10.329,557.218 -357.32,1576.962 -1358.002,1636.875c174.967,48.746 177.763,233.521 222.301,355.162c216.286,590.721 489.896,1028.26 1209.106,1479.975l-1313.774,0c-611.476,-348.765 -891.708,-931.44 -1062.969,-1704.033l-1036.612,-901.862l1728.68,0c348.713,-6.941 648.748,-425.699 648.473,-842.599c-0.269,-408.086 -295.963,-829.191 -625.202,-809.025l-2652.218,-1.256l73.405,-916.313Z"/>
+      <path d="M8300.537,8229.448l-1211.191,0l-2165.462,-2275.57l-1.89,1971.713c-468.466,-295.407 -790.094,-766.552 -989.084,-1384.469c666.399,-244.93 1058.169,-743.455 1169.424,-1501.014l3313.419,-3627.119c231.004,89.548 500.173,172.882 874.126,256.461c-10.72,40.147 -20.889,79.818 -30.529,119.028l-3450.495,3765.555l-1.504,-1.094l2493.186,2676.509Z"/>
+      <path d="M3165.897,2908.978l-203.126,-206.747c494.867,-486.198 1203.521,-674.932 1686.307,-673.384c443.551,1.422 1099.958,141.388 1678.029,669.793l-195.548,213.928c-511.238,-467.314 -1091.141,-592.63 -1483.41,-593.888c-424.208,-1.36 -1047.43,163.092 -1482.253,590.297Z"/>
+      <path d="M2564.238,2420.863l-205.523,-204.364c649.341,-653.023 1503.795,-959.2 2290.191,-957.612c750.353,1.514 1553.165,256.371 2282.588,942.656l-198.607,211.091c-666.486,-627.07 -1398.956,-862.529 -2084.566,-863.912c-715.711,-1.444 -1493.108,277.817 -2084.083,872.142Z"/>
+    </svg>
+    <span class="brand-name">ReconKit</span>
+    <span class="brand-tag">v1.0</span>
+  </div>
+
+  <div class="nav-tools" id="navTools">
+    <a class="nav-btn" href="index.html" style="text-decoration:none"><span class="nav-icon">◉</span> Exposure</a>
+    <a class="nav-btn" href="index.html" style="text-decoration:none"><span class="nav-icon">◈</span> IP Lookup</a>
+    <a class="nav-btn" href="index.html" style="text-decoration:none"><span class="nav-icon">◇</span> Domain</a>
+    <a class="nav-btn" href="index.html" style="text-decoration:none"><span class="nav-icon">◆</span> DNS</a>
+    <a class="nav-btn" href="index.html" style="text-decoration:none"><span class="nav-icon">◐</span> SSL</a>
+    <a class="nav-btn" href="index.html" style="text-decoration:none"><span class="nav-icon">≡</span> Headers</a>
+    <a class="nav-btn" href="index.html" style="text-decoration:none"><span class="nav-icon">⚠</span> Breach</a>
+    <a class="nav-btn" href="index.html" style="text-decoration:none"><span class="nav-icon">@</span> Username</a>
+    <a class="nav-btn active" href="learn.html" style="text-decoration:none"><span class="nav-icon">▸</span> Learn Page</a>
+  </div>
+
+  <div class="nav-right">
+    <div class="live-indicator">
+      <span class="live-dot"></span>
+      <span>LIVE</span>
+    </div>
+    <button class="theme-toggle" id="themeToggle" title="Toggle light/dark mode">🌙</button>
+    <a class="settings-btn" href="index.html" title="Back to toolkit" style="text-decoration:none;display:flex;align-items:center;justify-content:center;">
+      <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16">
+        <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd"/>
+      </svg>
+    </a>
+    <button class="hamburger" id="hamburger">☰</button>
+  </div>
+</nav>
+
+<!-- LEARN PAGE LAYOUT -->
+<div class="learn-page">
+
+  <!-- SIDEBAR -->
+  <aside class="learn-sidebar">
+
+    <div class="learn-sidebar-section">
+      <div class="learn-sidebar-group">For Everyone</div>
+      <button class="learn-sidebar-link active" data-article="protect">
+        <span class="sl-icon">🛡</span> How to Protect Yourself
+      </button>
+      <button class="learn-sidebar-link" data-article="tracking">
+        <span class="sl-icon">👁</span> How Websites Track You
+      </button>
+      <button class="learn-sidebar-link" data-article="vpn">
+        <span class="sl-icon">🔒</span> VPNs Explained
+      </button>
+      <button class="learn-sidebar-link" data-article="passwords">
+        <span class="sl-icon">🔑</span> Password Security
+      </button>
+      <button class="learn-sidebar-link" data-article="phishing">
+        <span class="sl-icon">🎣</span> Recognising Phishing
+      </button>
+      <button class="learn-sidebar-link" data-article="attacks">
+        <span class="sl-icon">⚡</span> Common Attack Types
+      </button>
+    </div>
+
+    <div class="learn-sidebar-section">
+      <div class="learn-sidebar-group">For Researchers</div>
+      <button class="learn-sidebar-link" data-article="osint-intro">
+        <span class="sl-icon">🔍</span> OSINT Introduction
+      </button>
+      <button class="learn-sidebar-link" data-article="recon">
+        <span class="sl-icon">🗺</span> Recon Methodology
+      </button>
+      <button class="learn-sidebar-link" data-article="passive-active">
+        <span class="sl-icon">⚖</span> Passive vs Active Recon
+      </button>
+      <button class="learn-sidebar-link" data-article="footprinting">
+        <span class="sl-icon">👣</span> Digital Footprinting
+      </button>
+      <button class="learn-sidebar-link" data-article="disclosure">
+        <span class="sl-icon">📋</span> Responsible Disclosure
+      </button>
+      <button class="learn-sidebar-link" data-article="certpath">
+        <span class="sl-icon">🏆</span> Cert Roadmap
+      </button>
+    </div>
+
+    <div class="learn-sidebar-section">
+      <div class="learn-sidebar-group">Reference</div>
+      <button class="learn-sidebar-link" data-article="glossary">
+        <span class="sl-icon">📖</span> Security Glossary
+      </button>
+      <button class="learn-sidebar-link" data-article="tools">
+        <span class="sl-icon">🧰</span> Recommended Tools
+      </button>
+    </div>
+
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="learn-main">
+
+    <!-- ── PROTECT YOURSELF ─────────────────────────────── -->
+    <article class="learn-article active" id="art-protect">
+      <div class="learn-article-eyebrow">// DEFENSIVE SECURITY</div>
+      <h1>How to Protect Yourself Online</h1>
+      <p>The data on your ReconKit Exposure page is what every website you visit silently collects — with zero warning and no permission required. Here's how to significantly reduce what you expose, starting with the most impactful steps.</p>
+
+      <h2>The Most Important Steps First</h2>
+      <div class="learn-steps">
+        <div class="learn-step">Install <strong>uBlock Origin</strong> in your browser. It blocks ads, trackers, and fingerprinting scripts. It is the single most impactful thing you can do immediately — free, open source, and takes 30 seconds to set up.</div>
+        <div class="learn-step">Switch to <strong>Firefox or Brave Browser</strong>. Both actively resist fingerprinting and tracking. Chrome is the worst offender — it is Google's primary data collection tool disguised as a browser.</div>
+        <div class="learn-step">Use a <strong>password manager</strong> — Bitwarden (free), 1Password, or KeePass. Generate a unique random password for every account. This one change eliminates credential stuffing attacks entirely.</div>
+        <div class="learn-step">Enable <strong>two-factor authentication (2FA)</strong> everywhere. Use an authenticator app (Google Authenticator, Authy, or Bitwarden) rather than SMS where possible. Even weak 2FA is infinitely better than none.</div>
+        <div class="learn-step">Use a <strong>reputable VPN</strong> on public networks — coffee shops, airports, hotels. Mullvad, ProtonVPN, or IVPN. Avoid any free VPN — they sell your data.</div>
+      </div>
+
+      <h2>Browser Hardening</h2>
+      <div class="learn-callout warn">
+        <strong>Warning:</strong> Canvas and WebGL fingerprinting cannot be blocked by a VPN. Even behind a VPN, your browser generates a unique identifier from your GPU and fonts. Use Brave or Firefox with Privacy Badger to mitigate this.
+      </div>
+      <p>Beyond installing a good browser, configure it properly:</p>
+      <div class="learn-callout">
+        <strong>Firefox hardening:</strong> Set <code>privacy.resistFingerprinting = true</code> in about:config. Install uBlock Origin and Privacy Badger. Change your DNS to 1.1.1.1 or 9.9.9.9 in Settings → Network.
+      </div>
+      <div class="learn-callout good">
+        <strong>Brave is hardened by default</strong> — it blocks fingerprinting, trackers, and ads without any configuration. It also has a built-in VPN and Tor integration.
+      </div>
+
+      <h2>Network & DNS</h2>
+      <p>Your ISP logs every domain you visit by default. Changing your DNS to a privacy-respecting provider prevents this without any other changes to your setup.</p>
+      <table class="learn-table">
+        <thead><tr><th>Provider</th><th>DNS Address</th><th>Logs?</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td>Cloudflare</td><td>1.1.1.1</td><td class="good">No</td><td>Fast, privacy-focused</td></tr>
+          <tr><td>Quad9</td><td>9.9.9.9</td><td class="good">No</td><td>Blocks malicious domains</td></tr>
+          <tr><td>NextDNS</td><td>Custom</td><td class="good">Optional</td><td>Configurable blocklists</td></tr>
+          <tr><td>Your ISP</td><td>Default</td><td class="bad">Yes</td><td>Sold to advertisers</td></tr>
+        </tbody>
+      </table>
+
+      <h2>Account Security Checklist</h2>
+      <div class="learn-callout good">
+        <strong>✓ Unique password for every account</strong> — check your most important accounts first: email, banking, social media.<br><br>
+        <strong>✓ 2FA on email</strong> — your email is the master key to every other account via password reset.<br><br>
+        <strong>✓ Check for breaches</strong> — use the <a href="index.html">Breach Check tool</a> or visit haveibeenpwned.com.<br><br>
+        <strong>✓ Keep software updated</strong> — most real-world attacks exploit known, already-patched vulnerabilities.
+      </div>
+    </article>
+
+    <!-- ── HOW WEBSITES TRACK YOU ───────────────────────── -->
+    <article class="learn-article" id="art-tracking">
+      <div class="learn-article-eyebrow">// SURVEILLANCE MECHANICS</div>
+      <h1>How Websites Track You</h1>
+      <p>Most people know about cookies. But modern tracking is layered — websites use multiple techniques simultaneously, many of which are invisible and survive cookie deletion, VPN use, and private browsing. ReconKit demonstrates these in real time.</p>
+
+      <h2>Layer 1 — IP Address</h2>
+      <p>Your IP address is sent with every request you make. No permission, no opt-out. It reveals your approximate city, ISP, and sometimes your building or employer. Law enforcement can subpoena ISPs to tie an IP to an identity with a timestamp.</p>
+      <div class="learn-callout warn">
+        <strong>VPNs mask your real IP</strong> — but shift trust to the VPN provider. If they keep logs, your privacy is only as good as their policies.
+      </div>
+
+      <h2>Layer 2 — Browser Fingerprinting</h2>
+      <p>Your browser leaks dozens of data points with every page visit — screen resolution, installed fonts, GPU model, timezone, language settings, and more. Combined, these create a unique "fingerprint" that identifies you even after clearing cookies.</p>
+      <table class="learn-table">
+        <thead><tr><th>Signal</th><th>What it reveals</th><th>Blockable?</th></tr></thead>
+        <tbody>
+          <tr><td>Canvas fingerprint</td><td>GPU rendering — uniquely identifies your device</td><td class="warn">Partial</td></tr>
+          <tr><td>WebGL fingerprint</td><td>GPU vendor and model</td><td class="warn">Partial</td></tr>
+          <tr><td>Audio fingerprint</td><td>Sound hardware characteristics</td><td class="warn">Partial</td></tr>
+          <tr><td>Installed fonts</td><td>OS, region, installed software</td><td class="good">Yes (Brave)</td></tr>
+          <tr><td>Screen resolution</td><td>Device type and monitor setup</td><td class="bad">No</td></tr>
+          <tr><td>Timezone</td><td>Approximate location</td><td class="bad">No</td></tr>
+          <tr><td>User agent</td><td>OS, browser, and version</td><td class="good">Spoofable</td></tr>
+          <tr><td>Battery level</td><td>Weak cross-site identifier</td><td class="good">Deprecated</td></tr>
+        </tbody>
+      </table>
+
+      <h2>Layer 3 — Third-Party Cookies & Trackers</h2>
+      <p>When a website embeds a Google Analytics script, a Facebook Like button, or a Twitter widget, those third parties set cookies that follow you across every site where those scripts appear — which is most of the commercial web. This is how Facebook knows what you searched for on a competitor's site.</p>
+
+      <h2>Layer 4 — WebRTC Leaks</h2>
+      <p>WebRTC is a real-time communication protocol built into browsers for video calls. Even when you're behind a VPN, browsers can reveal your real local and public IP address through WebRTC to any page that asks. ReconKit's Exposure tab checks for this specifically.</p>
+      <div class="learn-callout danger">
+        <strong>This is why VPN alone is insufficient.</strong> A site can fingerprint your GPU, read your WebRTC IPs, and identify you across sessions — even if your VPN IP changes. You need fingerprint resistance, not just IP masking.
+      </div>
+
+      <h2>Layer 5 — Behavioural Biometrics</h2>
+      <p>Advanced tracking captures how you move your mouse, how fast you type, scrolling patterns, and touch pressure on mobile. These patterns are highly unique and cannot be blocked by any browser extension. This is used by fraud detection systems and increasingly by ad networks.</p>
+    </article>
+
+    <!-- ── VPNs EXPLAINED ───────────────────────────────── -->
+    <article class="learn-article" id="art-vpn">
+      <div class="learn-article-eyebrow">// NETWORK PRIVACY</div>
+      <h1>VPNs Explained</h1>
+      <p>A VPN (Virtual Private Network) encrypts your internet traffic and routes it through a server in another location — masking your real IP from the websites you visit and encrypting traffic from your ISP. Understanding what VPNs actually protect (and don't) is critical.</p>
+
+      <h2>What a VPN Does</h2>
+      <div class="learn-callout good">
+        <strong>✓ Hides your IP address</strong> from websites and services you visit.<br><br>
+        <strong>✓ Encrypts your traffic</strong> from your ISP — they see you connected to a VPN, not what you browse.<br><br>
+        <strong>✓ Protects you on public WiFi</strong> — prevents MITM attacks on open networks.<br><br>
+        <strong>✓ Bypasses geographic restrictions</strong> — access region-locked content.
+      </div>
+
+      <h2>What a VPN Does NOT Do</h2>
+      <div class="learn-callout danger">
+        <strong>✗ Does not stop browser fingerprinting</strong> — canvas, WebGL, and font fingerprints are unaffected.<br><br>
+        <strong>✗ Does not stop cookies</strong> already set on your device.<br><br>
+        <strong>✗ Does not hide you from Google/Facebook</strong> when you're logged in — they track by account.<br><br>
+        <strong>✗ Does not stop WebRTC leaks</strong> unless your browser is configured to prevent them.<br><br>
+        <strong>✗ Does not make you anonymous</strong> — it shifts trust from your ISP to your VPN provider.
+      </div>
+
+      <h2>Choosing a VPN</h2>
+      <p>The VPN market is full of providers with questionable privacy practices. Many free VPNs are funded by selling user data — the opposite of their stated purpose. The criteria that matter:</p>
+      <table class="learn-table">
+        <thead><tr><th>Provider</th><th>Logs?</th><th>Jurisdiction</th><th>Price</th><th>Audited?</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Mullvad</strong></td><td class="good">No</td><td>Sweden</td><td>€5/mo</td><td class="good">Yes</td></tr>
+          <tr><td><strong>ProtonVPN</strong></td><td class="good">No</td><td>Switzerland</td><td>Free–€8/mo</td><td class="good">Yes</td></tr>
+          <tr><td><strong>IVPN</strong></td><td class="good">No</td><td>Gibraltar</td><td>$6/mo</td><td class="good">Yes</td></tr>
+          <tr><td>ExpressVPN</td><td class="warn">Claims no</td><td>British Virgin Islands</td><td>$8/mo</td><td class="warn">Partial</td></tr>
+          <tr><td>NordVPN</td><td class="warn">Claims no</td><td>Panama</td><td>$4/mo</td><td class="warn">Partial</td></tr>
+          <tr><td>Free VPNs</td><td class="bad">Yes</td><td>Various</td><td>Free</td><td class="bad">No</td></tr>
+        </tbody>
+      </table>
+      <div class="learn-callout warn">
+        <strong>Mullvad accepts cash and cryptocurrency</strong> and doesn't require an email address to sign up. If anonymity matters to you, this is the most serious option available.
+      </div>
+
+      <h2>VPN vs Tor</h2>
+      <p>Tor routes your traffic through multiple encrypted relays, making it much harder to trace. It's slower than a VPN and not suitable for streaming, but provides stronger anonymity for sensitive browsing. For most people, a trusted VPN is the right tool — Tor is for high-stakes situations where anonymity is critical.</p>
+    </article>
+
+    <!-- ── PASSWORD SECURITY ────────────────────────────── -->
+    <article class="learn-article" id="art-passwords">
+      <div class="learn-article-eyebrow">// AUTHENTICATION SECURITY</div>
+      <h1>Password Security</h1>
+      <p>Passwords remain the primary authentication mechanism for most systems. Understanding how they're attacked helps you build habits that are actually effective — not just security theatre.</p>
+
+      <h2>How Passwords Are Attacked</h2>
+      <table class="learn-table">
+        <thead><tr><th>Attack</th><th>How it works</th><th>Defence</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Credential stuffing</strong></td><td>Leaked password lists from old breaches tried on other services</td><td class="good">Unique passwords everywhere</td></tr>
+          <tr><td><strong>Brute force</strong></td><td>Every possible combination tried sequentially</td><td class="good">Length — 16+ characters</td></tr>
+          <tr><td><strong>Dictionary attack</strong></td><td>Common words and patterns tried first</td><td class="good">Random characters or passphrase</td></tr>
+          <tr><td><strong>Phishing</strong></td><td>Fake login page captures your credentials</td><td class="good">2FA + check the URL</td></tr>
+          <tr><td><strong>Keylogger</strong></td><td>Malware captures keystrokes</td><td class="good">Keep OS updated, use AV</td></tr>
+        </tbody>
+      </table>
+
+      <h2>Length Beats Complexity</h2>
+      <div class="learn-callout">
+        <strong>A 20-character passphrase of random words</strong> is dramatically stronger than <code>Tr0ub@dor!</code>. Length exponentially increases brute-force time. A 16-character random password takes centuries to crack. An 8-character complex password can fall in hours with modern GPUs.
+      </div>
+
+      <h2>The Password Manager Case</h2>
+      <p>You cannot memorise unique 20-character random passwords for 200 accounts. You don't need to. A password manager generates and stores them. You need one strong master password — make it a long passphrase you'll remember.</p>
+      <div class="learn-callout good">
+        <strong>Bitwarden</strong> — free, open source, audited, works everywhere. Best choice for most people.<br><br>
+        <strong>1Password</strong> — polished, team/family features, $3/mo.<br><br>
+        <strong>KeePass</strong> — local only, no cloud, maximum control for technical users.
+      </div>
+
+      <h2>Two-Factor Authentication</h2>
+      <p>2FA means a stolen password alone cannot access your account. The second factor (an authenticator app code) expires every 30 seconds. Even if attackers have your password from a breach, they cannot log in without physical access to your phone.</p>
+      <div class="learn-callout warn">
+        <strong>SMS-based 2FA is weak</strong> — SIM swapping attacks can intercept text messages. Use an authenticator app (Authy, Google Authenticator, or the Bitwarden built-in authenticator) for important accounts.
+      </div>
+
+      <a href="index.html" class="learn-tool-link">⚙ Try the Password Generator in ReconKit Utilities →</a>
+    </article>
+
+    <!-- ── PHISHING ──────────────────────────────────────── -->
+    <article class="learn-article" id="art-phishing">
+      <div class="learn-article-eyebrow">// SOCIAL ENGINEERING</div>
+      <h1>Recognising Phishing Attacks</h1>
+      <p>Phishing is the most common attack vector globally — not because it's sophisticated, but because it works. It exploits human psychology rather than technical vulnerabilities. No firewall protects against a person willingly entering their credentials on a fake page.</p>
+
+      <h2>Types of Phishing</h2>
+      <table class="learn-table">
+        <thead><tr><th>Type</th><th>Target</th><th>Method</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Email phishing</strong></td><td>Mass — anyone</td><td>Fake "your account has been compromised" emails with malicious links</td></tr>
+          <tr><td><strong>Spear phishing</strong></td><td>Specific individual</td><td>Personalised attack using researched information about you</td></tr>
+          <tr><td><strong>Whaling</strong></td><td>Executives / high value</td><td>CEO fraud — impersonating leadership to authorise wire transfers</td></tr>
+          <tr><td><strong>Smishing</strong></td><td>Mobile users</td><td>Fake SMS from "your bank" or delivery service</td></tr>
+          <tr><td><strong>Vishing</strong></td><td>Phone users</td><td>Caller impersonates tech support, bank, or government</td></tr>
+          <tr><td><strong>Clone phishing</strong></td><td>Email recipients</td><td>Exact copy of legitimate email with malicious links substituted</td></tr>
+        </tbody>
+      </table>
+
+      <h2>Red Flags to Look For</h2>
+      <div class="learn-callout warn">
+        <strong>Check the actual domain carefully</strong> — paypa1.com, paypai.com, paypal.com.evil.net are not PayPal. The legitimate domain is always the part immediately before .com, .org, etc. Hover over any link before clicking to see the real destination.
+      </div>
+      <div class="learn-callout danger">
+        <strong>Urgency is the primary weapon.</strong> "Your account will be suspended in 24 hours" — "Verify now or lose access" — "Immediate action required." Urgency bypasses critical thinking. Real companies don't threaten immediate consequences for routine security checks. If it feels urgent, slow down.
+      </div>
+      <p>Other red flags: requests for credentials via email, attachments you didn't expect, mismatched sender addresses (display name vs actual address), generic greetings ("Dear Customer" instead of your name), and requests to pay by gift card or wire transfer.</p>
+
+      <h2>If You Clicked a Phishing Link</h2>
+      <div class="learn-steps">
+        <div class="learn-step">Do not enter any information. Close the tab immediately.</div>
+        <div class="learn-step">If you entered credentials: change your password on the real site immediately, then enable 2FA if you haven't.</div>
+        <div class="learn-step">If you downloaded a file: do not open it. Run a malware scan. Consider a system restore if you did open it.</div>
+        <div class="learn-step">Check your email for forwarding rules — phishers often set rules to silently forward your email to themselves.</div>
+        <div class="learn-step">Report the phishing email to your email provider and to the impersonated organisation.</div>
+      </div>
+    </article>
+
+    <!-- ── COMMON ATTACKS ───────────────────────────────── -->
+    <article class="learn-article" id="art-attacks">
+      <div class="learn-article-eyebrow">// THREAT LANDSCAPE</div>
+      <h1>Common Attack Types</h1>
+      <p>Understanding attack vectors is the foundation of defence. You cannot protect against threats you don't understand. These are the most common techniques used against individuals and organisations.</p>
+
+      <h2>Network Attacks</h2>
+      <div class="learn-callout">
+        <strong>Man-in-the-Middle (MITM).</strong> The attacker positions themselves between you and the server, intercepting and potentially modifying traffic. Most dangerous on public WiFi. HTTPS and VPNs mitigate this — always verify the padlock and certificate when handling sensitive data.
+      </div>
+      <div class="learn-callout warn">
+        <strong>DNS Spoofing / Poisoning.</strong> Corrupted DNS responses redirect users to attacker-controlled servers even when they type the correct domain. Use DNSSEC-supporting resolvers and verify HTTPS certificates.
+      </div>
+
+      <h2>Web Application Attacks</h2>
+      <div class="learn-callout">
+        <strong>SQL Injection.</strong> Attacker inserts malicious SQL into a web form input, manipulating the database. Example: entering <code>' OR 1=1--</code> in a login form to bypass authentication. Prevented by parameterised queries and input sanitisation.
+      </div>
+      <div class="learn-callout warn">
+        <strong>Cross-Site Scripting (XSS).</strong> Malicious JavaScript injected into a legitimate page runs in victims' browsers — stealing session cookies, redirecting users, or capturing keystrokes. Prevented by Content Security Policy headers and output encoding.
+      </div>
+      <div class="learn-callout">
+        <strong>Cross-Site Request Forgery (CSRF).</strong> A malicious page secretly sends requests to a site where the victim is authenticated. The site cannot distinguish the legitimate user from the attack. Prevented by CSRF tokens and SameSite cookie attributes.
+      </div>
+
+      <h2>Endpoint Attacks</h2>
+      <div class="learn-callout danger">
+        <strong>Ransomware.</strong> Malware encrypts all your files and demands payment for the decryption key. Spreads through phishing emails, malicious downloads, and unpatched vulnerabilities. Defence: regular offline backups, software updates, and email vigilance.
+      </div>
+      <div class="learn-callout warn">
+        <strong>Credential Stuffing.</strong> Using lists of leaked username/password pairs from breaches to try other services. Works because most people reuse passwords. Defence: unique passwords + 2FA everywhere.
+      </div>
+
+      <h2>Social Engineering</h2>
+      <p>Manipulating people rather than systems — pretexting, impersonation, urgency tactics. No technical control fully defends against a sufficiently convincing human attacker. Defences are organisational: verification procedures, scepticism about unsolicited contact, and training.</p>
+    </article>
+
+    <!-- ── OSINT INTRODUCTION ────────────────────────────── -->
+    <article class="learn-article" id="art-osint-intro">
+      <div class="learn-article-eyebrow">// OPEN SOURCE INTELLIGENCE</div>
+      <h1>Introduction to OSINT</h1>
+      <p>OSINT — Open Source Intelligence — is the practice of collecting and analysing information from publicly available sources to produce actionable intelligence. Everything ReconKit does is OSINT. It is legal, ethical (when used appropriately), and a foundational skill in cybersecurity.</p>
+
+      <h2>What Counts as "Open Source"?</h2>
+      <p>Open source does not mean just code repositories. In an intelligence context, it means anything publicly available without requiring unauthorised access:</p>
+      <div class="learn-callout">
+        <strong>Public sources include:</strong> websites and web archives, social media profiles, DNS records, WHOIS registration data, SSL certificate logs (crt.sh), job postings, court records, company filings, academic publications, code repositories, news articles, and any data indexed by search engines.
+      </div>
+
+      <h2>OSINT in Cybersecurity</h2>
+      <table class="learn-table">
+        <thead><tr><th>Use Case</th><th>Who Uses It</th><th>Purpose</th></tr></thead>
+        <tbody>
+          <tr><td>Reconnaissance</td><td>Penetration testers</td><td>Map attack surface before an authorised test</td></tr>
+          <tr><td>Threat intelligence</td><td>SOC analysts</td><td>Identify indicators of compromise and attacker infrastructure</td></tr>
+          <tr><td>Incident response</td><td>IR teams</td><td>Trace attacker origins and identify compromised assets</td></tr>
+          <tr><td>Digital forensics</td><td>Investigators</td><td>Build evidence chains from public data</td></tr>
+          <tr><td>Red teaming</td><td>Red teams</td><td>Simulate realistic attacker behaviour against an organisation</td></tr>
+          <tr><td>Brand monitoring</td><td>Security teams</td><td>Detect phishing domains and data leaks referencing the organisation</td></tr>
+        </tbody>
+      </table>
+
+      <h2>The OSINT Framework</h2>
+      <p>OSINT Framework (osintframework.com) is a community-maintained visual map of OSINT sources and tools, organised by data type. It's an essential reference for understanding what kinds of data are publicly available and how to find them systematically.</p>
+
+      <h2>Legal and Ethical Boundaries</h2>
+      <div class="learn-callout danger">
+        <strong>OSINT does not mean anything goes.</strong> Even with public data: aggregating personal information about private individuals for harassment is illegal in most jurisdictions. Accessing data behind a login — even if you have credentials — crosses into computer misuse law. The Computer Misuse Act (UK), CFAA (US), and Kenya's Computer Misuse and Cybercrimes Act all apply.
+      </div>
+      <p>The ethical test is intent and consent. Researching your own exposure, conducting authorised penetration tests, or working in legitimate threat intelligence are all lawful. Researching individuals without their knowledge for personal or commercial advantage is a grey area that often crosses legal lines.</p>
+    </article>
+
+    <!-- ── RECON METHODOLOGY ─────────────────────────────── -->
+    <article class="learn-article" id="art-recon">
+      <div class="learn-article-eyebrow">// INTELLIGENCE METHODOLOGY</div>
+      <h1>Reconnaissance Methodology</h1>
+      <p>Effective reconnaissance follows a structured methodology — not just "Google things and see what appears." A systematic approach ensures you build a comprehensive picture of an organisation's attack surface without missing critical elements.</p>
+
+      <h2>The Reconnaissance Kill Chain</h2>
+      <div class="learn-steps">
+        <div class="learn-step"><strong>Define scope.</strong> What is the target? What's in scope (domains, IPs, subsidiaries) vs out of scope? Document this before starting. Never operate beyond agreed scope in an authorised engagement.</div>
+        <div class="learn-step"><strong>Passive reconnaissance.</strong> Gather information without touching the target's infrastructure. DNS records, WHOIS, certificate logs, Shodan, Google Dorks, social media, job postings. Target is unaware.</div>
+        <div class="learn-step"><strong>Infrastructure mapping.</strong> Identify IP ranges, ASNs, hosting providers, CDN usage, and cloud infrastructure. Tools: Hurricane Electric BGP toolkit, Shodan, Censys.</div>
+        <div class="learn-step"><strong>Subdomain enumeration.</strong> Discover subdomains using certificate transparency (crt.sh), DNS brute forcing, and passive DNS databases. Subdomains often reveal development environments, admin panels, and legacy systems.</div>
+        <div class="learn-step"><strong>Technology fingerprinting.</strong> Identify web frameworks, CMS platforms, server software, JavaScript libraries, and analytics tools. Tools: Wappalyzer, WhatWeb, BuiltWith.</div>
+        <div class="learn-step"><strong>People & credentials.</strong> Identify key personnel via LinkedIn, breach databases (HaveIBeenPwned, DeHashed), GitHub commits, email pattern discovery. Social engineering starts here.</div>
+        <div class="learn-step"><strong>Document and analyse.</strong> Consolidate findings into a structured report. Identify the most promising attack paths. Never act on findings without proper authorisation.</div>
+      </div>
+
+      <h2>Key OSINT Data Sources for Recon</h2>
+      <table class="learn-table">
+        <thead><tr><th>Source</th><th>URL</th><th>What it reveals</th></tr></thead>
+        <tbody>
+          <tr><td>crt.sh</td><td>crt.sh</td><td>All SSL certs issued — reveals subdomains</td></tr>
+          <tr><td>Shodan</td><td>shodan.io</td><td>Internet-connected devices, open ports, banners</td></tr>
+          <tr><td>Censys</td><td>search.censys.io</td><td>Similar to Shodan, different scan coverage</td></tr>
+          <tr><td>VirusTotal</td><td>virustotal.com</td><td>Domain/IP reputation, passive DNS</td></tr>
+          <tr><td>SecurityTrails</td><td>securitytrails.com</td><td>Historical DNS, subdomain discovery</td></tr>
+          <tr><td>OSINT Framework</td><td>osintframework.com</td><td>Comprehensive source map</td></tr>
+          <tr><td>Google Dorks</td><td>google.com</td><td>Exposed files, admin panels via search operators</td></tr>
+          <tr><td>Wayback Machine</td><td>web.archive.org</td><td>Historical site versions, old endpoints</td></tr>
+        </tbody>
+      </table>
+
+      <a href="index.html" class="learn-tool-link">🔍 Try the Domain, DNS & SSL tools in ReconKit →</a>
+    </article>
+
+    <!-- ── PASSIVE VS ACTIVE ─────────────────────────────── -->
+    <article class="learn-article" id="art-passive-active">
+      <div class="learn-article-eyebrow">// RECON TECHNIQUES</div>
+      <h1>Passive vs Active Reconnaissance</h1>
+      <p>The distinction between passive and active reconnaissance is not just technical — it has legal and ethical implications. Understanding when you're crossing from passive observation into active probing is fundamental to operating lawfully.</p>
+
+      <h2>Passive Reconnaissance</h2>
+      <p>Passive recon gathers information without directly interacting with the target's systems. The target cannot detect your activity because you never touch their infrastructure.</p>
+      <div class="learn-callout good">
+        <strong>Examples of passive recon:</strong><br>
+        — Searching Google for target information<br>
+        — Reading WHOIS registration records<br>
+        — Querying crt.sh for SSL certificates<br>
+        — Searching Shodan (data already indexed)<br>
+        — Reading the target's public website<br>
+        — Searching LinkedIn for employees<br>
+        — Checking HaveIBeenPwned for breached emails<br>
+        — Reviewing GitHub for accidentally committed secrets
+      </div>
+      <p>Passive recon is almost universally legal. You're consuming publicly available data through normal channels.</p>
+
+      <h2>Active Reconnaissance</h2>
+      <p>Active recon involves directly probing the target's systems. You generate traffic that hits their servers and can potentially be detected and logged.</p>
+      <div class="learn-callout danger">
+        <strong>Examples of active recon:</strong><br>
+        — Port scanning (Nmap) against their IP ranges<br>
+        — DNS zone transfer attempts<br>
+        — Web crawling their application<br>
+        — Sending requests to discover hidden paths<br>
+        — Banner grabbing from their services<br>
+        — Fuzzing web forms or APIs<br>
+        — Attempting authentication against login pages
+      </div>
+      <div class="learn-callout warn">
+        <strong>Active recon without explicit written authorisation is illegal</strong> in most jurisdictions — including Kenya (Computer Misuse and Cybercrimes Act 2018), UK (Computer Misuse Act), and US (CFAA). Even if your intent is benign, unauthorised port scanning constitutes an offence in most countries. Always have written scope and authorisation.
+      </div>
+
+      <h2>The Grey Zone</h2>
+      <p>Some techniques sit between passive and active. Visiting a public website generates server logs — is that active? Using Shodan's already-indexed data is passive, but Shodan scanning your target on demand is active. Generally: if you generate new traffic to their systems, it's active regardless of what tool you use.</p>
+
+      <h2>ReconKit and This Distinction</h2>
+      <p>ReconKit deliberately uses only passive techniques and public third-party APIs. The Domain, DNS, SSL, and WHOIS tools query existing databases — not the target directly. This means ReconKit is safe to use for research without risk of generating unauthorised traffic to target systems.</p>
+    </article>
+
+    <!-- ── DIGITAL FOOTPRINTING ──────────────────────────── -->
+    <article class="learn-article" id="art-footprinting">
+      <div class="learn-article-eyebrow">// IDENTITY EXPOSURE</div>
+      <h1>Digital Footprinting</h1>
+      <p>Your digital footprint is the total body of data that exists about you online — some you created deliberately, much you left without realising. Understanding your own footprint is the first step in both protecting your privacy and understanding how attackers profile targets.</p>
+
+      <h2>Active vs Passive Footprint</h2>
+      <table class="learn-table">
+        <thead><tr><th>Type</th><th>Examples</th><th>Control?</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Active</strong></td><td>Social media posts, forum comments, blog articles, GitHub commits, LinkedIn profile</td><td class="warn">Partial — you created it, you can delete it (mostly)</td></tr>
+          <tr><td><strong>Passive</strong></td><td>Server logs, tracking pixels, advertising profiles, data broker records, WHOIS registration, surveillance camera footage</td><td class="bad">Minimal — collected without your action</td></tr>
+        </tbody>
+      </table>
+
+      <h2>What a Skilled OSINT Analyst Can Find About You</h2>
+      <div class="learn-callout warn">
+        Given just your email address or username, an experienced analyst can typically: identify your real name, find all social media profiles, approximate your location from geo-tagged posts, identify your employer and job title, find your phone number from data broker sites, identify your approximate income from public records, and potentially find your home address. This is not hypothetical — it's routine in investigations.
+      </div>
+
+      <h2>Reducing Your Footprint</h2>
+      <div class="learn-steps">
+        <div class="learn-step">Google yourself — and your email addresses, phone numbers, and usernames. Use site-specific operators: <code>site:linkedin.com "your name"</code></div>
+        <div class="learn-step">Opt out of data brokers — Spokeo, WhitePages, BeenVerified, Intelius all have opt-out forms. It's tedious but effective. Services like DeleteMe automate this.</div>
+        <div class="learn-step">Review your social media privacy settings. Default settings on most platforms are maximally public. Audit what's visible to non-connections.</div>
+        <div class="learn-step">Remove geolocation data from photos before posting. Modern smartphones embed GPS coordinates in EXIF metadata. Tools like ExifTool can strip this.</div>
+        <div class="learn-step">Use separate emails for different purposes — one for finance, one for social, one for shopping, one for throwaway registrations. Proton Mail for sensitive communication.</div>
+      </div>
+
+      <a href="index.html" class="learn-tool-link">🔍 Check your username exposure across platforms →</a>
+    </article>
+
+    <!-- ── RESPONSIBLE DISCLOSURE ────────────────────────── -->
+    <article class="learn-article" id="art-disclosure">
+      <div class="learn-article-eyebrow">// ETHICS & PRACTICE</div>
+      <h1>Responsible Disclosure</h1>
+      <p>If you find a security vulnerability in someone else's system — a website, application, or service — responsible disclosure is the ethical and increasingly legally expected way to handle it. This is distinct from both doing nothing and from exploiting the vulnerability.</p>
+
+      <h2>The Core Principle</h2>
+      <p>Give the affected organisation a reasonable opportunity to fix the vulnerability before making it public. This balances the public's right to know about security issues against the harm that would come from immediate public disclosure while the vulnerability is still exploitable.</p>
+
+      <h2>The Responsible Disclosure Process</h2>
+      <div class="learn-steps">
+        <div class="learn-step"><strong>Document the vulnerability thoroughly.</strong> Note the affected URL or component, the steps to reproduce, the potential impact, and proof-of-concept evidence. Do not exploit further than necessary to demonstrate the issue.</div>
+        <div class="learn-step"><strong>Find the right contact.</strong> Look for a security.txt file at <code>domain.com/security.txt</code>, a bug bounty programme on HackerOne or Bugcrowd, or a security@ email address. Many organisations have published vulnerability disclosure policies.</div>
+        <div class="learn-step"><strong>Report clearly and professionally.</strong> Include all documentation. State that you're reporting in good faith and are not demanding payment. Give a reasonable timeline — 90 days is the industry standard established by Google Project Zero.</div>
+        <div class="learn-step"><strong>Wait for acknowledgement and patch.</strong> Track the deadline. Most organisations will respond and fix within 90 days if they take security seriously. Some will offer a reward (bug bounty) even without a formal programme.</div>
+        <div class="learn-step"><strong>Disclose publicly after the deadline.</strong> If the organisation has not patched after 90 days and is not communicating, coordinated disclosure to a CVE database or security researcher community is appropriate. Always err on the side of delay if there's genuine ongoing remediation effort.</div>
+      </div>
+
+      <h2>Bug Bounty Programmes</h2>
+      <p>Many organisations pay researchers for finding vulnerabilities through formal bug bounty programmes. Platforms like HackerOne and Bugcrowd host these programmes and provide clear rules of engagement, payment structures, and legal protection for researchers operating within scope.</p>
+      <div class="learn-callout good">
+        <strong>Bug bounty as a career path:</strong> Top researchers earn six figures annually from bug bounties alone. The top HackerOne researchers have earned over $1 million. This is a legitimate and growing career path in cybersecurity that requires the same skills as penetration testing — ethical hacking skills you can develop on platforms like TryHackMe, HackTheBox, and CTF competitions.
+      </div>
+
+      <h2>What Not to Do</h2>
+      <div class="learn-callout danger">
+        <strong>Never:</strong> Access, copy, or exfiltrate data beyond what's necessary to prove the vulnerability. Demand payment before reporting. Publicly disclose without giving the organisation a reasonable time to respond. Continue testing after you've found and documented the vulnerability. Use the vulnerability for any personal gain. These actions convert ethical disclosure into criminal activity.
+      </div>
+    </article>
+
+    <!-- ── CERT ROADMAP ──────────────────────────────────── -->
+    <article class="learn-article" id="art-certpath">
+      <div class="learn-article-eyebrow">// CAREER DEVELOPMENT</div>
+      <h1>Cybersecurity Certification Roadmap</h1>
+      <p>Certifications in cybersecurity serve two purposes: structured learning and market signalling to employers. The right path depends on which specialisation you're targeting. Here's an honest, opinionated guide to the certifications that actually move the needle.</p>
+
+      <h2>The Foundation Layer — Start Here</h2>
+      <table class="learn-table">
+        <thead><tr><th>Cert</th><th>Provider</th><th>Cost</th><th>Value</th></tr></thead>
+        <tbody>
+          <tr><td><strong>CompTIA Security+</strong></td><td>CompTIA</td><td>~$400</td><td class="good">Global baseline. Required or preferred on most entry-level job postings. Do this first.</td></tr>
+          <tr><td><strong>Google Cybersecurity Cert</strong></td><td>Coursera</td><td>~$50/mo</td><td class="good">Practical, builds portfolio projects, well-regarded for beginners. Good supplement.</td></tr>
+          <tr><td><strong>CompTIA Network+</strong></td><td>CompTIA</td><td>~$350</td><td class="warn">Useful if you lack networking fundamentals. Skip if you already understand TCP/IP, routing, subnetting.</td></tr>
+        </tbody>
+      </table>
+
+      <h2>Specialisation Tracks</h2>
+      <p>After Security+, choose your lane. The three main paths in cybersecurity employment:</p>
+
+      <h2>Track A — Security Analyst (Blue Team)</h2>
+      <p>Monitoring, threat detection, incident response. Best combined with data science skills.</p>
+      <table class="learn-table">
+        <thead><tr><th>Cert</th><th>Cost</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td>CompTIA CySA+</td><td>~$400</td><td>Security analyst focused, high employer recognition</td></tr>
+          <tr><td>Splunk Core Certified User</td><td>Free training + ~$130 exam</td><td>SIEM tool used by most SOCs globally — very practical</td></tr>
+          <tr><td>Microsoft SC-200</td><td>~$165</td><td>Security Operations Analyst using Microsoft Sentinel</td></tr>
+          <tr><td>CISSP</td><td>~$700</td><td>Senior/management level. Requires 5 years experience. Long-term goal.</td></tr>
+        </tbody>
+      </table>
+
+      <h2>Track B — Cloud Security</h2>
+      <p>Fastest-growing segment. Security skills + cloud knowledge = premium salary.</p>
+      <table class="learn-table">
+        <thead><tr><th>Cert</th><th>Cost</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td>Microsoft AZ-900</td><td>~$165</td><td>Azure fundamentals — baseline before security specialisation</td></tr>
+          <tr><td>Microsoft AZ-500</td><td>~$165</td><td>Azure Security Engineer. Highly valued in UK/EU markets.</td></tr>
+          <tr><td>AWS Security Specialty</td><td>~$300</td><td>For AWS environments — strong in US market</td></tr>
+          <tr><td>SC-100</td><td>~$165</td><td>Microsoft Cybersecurity Architect — senior level</td></tr>
+        </tbody>
+      </table>
+
+      <h2>Track C — Penetration Testing (Red Team)</h2>
+      <p>The most visible path. Hardest to enter without experience but highest earning ceiling.</p>
+      <table class="learn-table">
+        <thead><tr><th>Cert</th><th>Cost</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td>eJPT (eLearnSecurity)</td><td>~$200</td><td>Good entry point — practical exam, affordable, respected</td></tr>
+          <tr><td>CEH (EC-Council)</td><td>~$1,200</td><td>Known brand, especially in UK/Middle East. More theoretical than OSCP.</td></tr>
+          <tr><td><strong>OSCP (Offensive Security)</strong></td><td>~$1,500</td><td class="good">The gold standard. 24-hour practical exam. Opens senior roles internationally. Work toward this.</td></tr>
+          <tr><td>CRTO (Red Team Ops)</td><td>~$500</td><td>Cobalt Strike, C2 infrastructure — advanced red team operations</td></tr>
+        </tbody>
+      </table>
+
+      <h2>Free Practice Platforms</h2>
+      <div class="learn-callout good">
+        <strong>TryHackMe</strong> — beginner-friendly, guided learning paths, browser-based. Start here.<br><br>
+        <strong>HackTheBox</strong> — more advanced, real CTF-style machines. Build your public profile.<br><br>
+        <strong>PicoCTF</strong> — beginner CTF, university-run, year-round challenges.<br><br>
+        <strong>CTFtime.org</strong> — calendar of all active CTF competitions globally. Participate and document wins.
+      </div>
+    </article>
+
+    <!-- ── GLOSSARY ──────────────────────────────────────── -->
+    <article class="learn-article" id="art-glossary">
+      <div class="learn-article-eyebrow">// REFERENCE</div>
+      <h1>Security Glossary</h1>
+      <p>A working vocabulary of cybersecurity terms. Understanding these precisely matters — imprecise language leads to imprecise thinking about security.</p>
+      <div class="glossary-grid">
+        <div class="glossary-item"><div class="glossary-term">ASN — Autonomous System Number</div><div class="glossary-def">A unique identifier assigned to a network operator (ISP, cloud provider, university) that controls a range of IP addresses. Used in routing and threat intelligence to identify network ownership.</div></div>
+        <div class="glossary-item"><div class="glossary-term">CSRF — Cross-Site Request Forgery</div><div class="glossary-def">Attack that tricks a victim's browser into making unintended requests to a site where they're authenticated. Prevented by CSRF tokens and SameSite cookie policies.</div></div>
+        <div class="glossary-item"><div class="glossary-term">CVE — Common Vulnerabilities and Exposures</div><div class="glossary-def">A public dictionary of known security vulnerabilities, each assigned a unique ID (e.g., CVE-2021-44228). The standard way to reference specific vulnerabilities across tools and organisations.</div></div>
+        <div class="glossary-item"><div class="glossary-term">DNS — Domain Name System</div><div class="glossary-def">The internet's address book. Translates human-readable domain names (google.com) into IP addresses computers use to route traffic. DNS queries reveal your browsing history to your ISP by default.</div></div>
+        <div class="glossary-item"><div class="glossary-term">DMARC / DKIM / SPF</div><div class="glossary-def">Email authentication standards. SPF specifies which servers can send email for a domain. DKIM cryptographically signs emails. DMARC tells receiving servers what to do with emails that fail those checks. Missing these enables email spoofing.</div></div>
+        <div class="glossary-item"><div class="glossary-term">Firewall</div><div class="glossary-def">A security system that monitors and controls network traffic based on rules. Can be network-level (blocking traffic between networks) or host-level (on an individual machine). Not a silver bullet — most attacks enter via allowed traffic.</div></div>
+        <div class="glossary-item"><div class="glossary-term">IDS / IPS — Intrusion Detection/Prevention System</div><div class="glossary-def">IDS monitors network traffic for suspicious patterns and alerts. IPS goes further — it can automatically block detected threats. Often confused with firewalls; they serve different purposes.</div></div>
+        <div class="glossary-item"><div class="glossary-term">IoC — Indicator of Compromise</div><div class="glossary-def">Evidence that a system has been compromised — malicious IP addresses, file hashes, domain names, or registry keys associated with known malware. Used in threat intelligence to detect infections.</div></div>
+        <div class="glossary-item"><div class="glossary-term">Malware</div><div class="glossary-def">Malicious software — an umbrella term covering viruses, ransomware, trojans, spyware, adware, rootkits, and worms. Each has different infection vectors, persistence mechanisms, and objectives.</div></div>
+        <div class="glossary-item"><div class="glossary-term">MITM — Man-in-the-Middle</div><div class="glossary-def">Attack where the attacker intercepts communications between two parties. Both parties believe they're communicating directly with each other. HTTPS and certificate pinning mitigate this.</div></div>
+        <div class="glossary-item"><div class="glossary-term">MFA / 2FA — Multi/Two-Factor Authentication</div><div class="glossary-def">Requiring more than one proof of identity. Factors are something you know (password), something you have (phone), or something you are (biometric). Dramatically reduces account takeover risk.</div></div>
+        <div class="glossary-item"><div class="glossary-term">OSINT — Open Source Intelligence</div><div class="glossary-def">Intelligence gathered from publicly available sources without requiring privileged access. The foundation of reconnaissance in cybersecurity and the methodology behind ReconKit.</div></div>
+        <div class="glossary-item"><div class="glossary-term">OSCP — Offensive Security Certified Professional</div><div class="glossary-def">The most respected penetration testing certification. Features a 24-hour practical exam requiring candidates to compromise multiple machines in a controlled environment. No multiple choice — you either own the machines or you don't.</div></div>
+        <div class="glossary-item"><div class="glossary-term">Penetration Testing</div><div class="glossary-def">Authorised, simulated cyberattack against a system to find and report vulnerabilities before real attackers do. Distinguished from hacking by explicit written authorisation and defined scope.</div></div>
+        <div class="glossary-item"><div class="glossary-term">Phishing</div><div class="glossary-def">Social engineering attack using fraudulent communication (typically email) to steal credentials or deliver malware. The most common initial attack vector in corporate breaches.</div></div>
+        <div class="glossary-item"><div class="glossary-term">Ransomware</div><div class="glossary-def">Malware that encrypts victim data and demands payment for the decryption key. Has become a major criminal industry targeting hospitals, governments, and corporations. Offline backups are the primary defence.</div></div>
+        <div class="glossary-item"><div class="glossary-term">SIEM — Security Information and Event Management</div><div class="glossary-def">Platform that aggregates and analyses log data from across an organisation's systems to detect threats. Splunk, Microsoft Sentinel, and IBM QRadar are leading products. Central tool in SOC operations.</div></div>
+        <div class="glossary-item"><div class="glossary-term">SOC — Security Operations Centre</div><div class="glossary-def">A team (and facility) dedicated to continuously monitoring and defending an organisation's systems. Entry-level SOC analyst is the most common first job in cybersecurity.</div></div>
+        <div class="glossary-item"><div class="glossary-term">SQL Injection</div><div class="glossary-def">Attack inserting malicious SQL into input fields to manipulate a database. Can expose data, bypass authentication, or destroy records. Entirely preventable with parameterised queries.</div></div>
+        <div class="glossary-item"><div class="glossary-term">TLS/SSL</div><div class="glossary-def">Encryption protocols securing data in transit between browser and server. TLS is the modern successor to SSL (which is deprecated). The "S" in HTTPS. Certificate transparency logs (crt.sh) make all issued certificates public.</div></div>
+        <div class="glossary-item"><div class="glossary-term">VPN — Virtual Private Network</div><div class="glossary-def">Encrypts traffic and masks IP by routing through a server elsewhere. Shifts trust from ISP to VPN provider. Does not protect against fingerprinting, cookies, or account-based tracking.</div></div>
+        <div class="glossary-item"><div class="glossary-term">XSS — Cross-Site Scripting</div><div class="glossary-def">Injecting malicious JavaScript into a legitimate website that executes in victims' browsers. Can steal session cookies, redirect users, or log keystrokes. Prevented by Content Security Policy and output encoding.</div></div>
+        <div class="glossary-item"><div class="glossary-term">Zero-day</div><div class="glossary-def">A software vulnerability unknown to the vendor, with no available patch. "Zero days" for defenders to prepare. Actively exploited zero-days are extremely valuable and traded on dark markets for significant sums.</div></div>
+      </div>
+    </article>
+
+    <!-- ── RECOMMENDED TOOLS ─────────────────────────────── -->
+    <article class="learn-article" id="art-tools">
+      <div class="learn-article-eyebrow">// TOOLKIT</div>
+      <h1>Recommended Tools</h1>
+      <p>A curated list of tools used by professionals. Organised by purpose, with honest notes on when each one actually matters.</p>
+
+      <h2>OSINT & Reconnaissance</h2>
+      <table class="learn-table">
+        <thead><tr><th>Tool</th><th>Type</th><th>Purpose</th></tr></thead>
+        <tbody>
+          <tr><td><strong>ReconKit</strong> <span class="learn-tag cyan">This tool</span></td><td>Web app</td><td>Browser-based OSINT toolkit — exposure, IP, domain, DNS, SSL, headers, breach</td></tr>
+          <tr><td>Shodan</td><td>Search engine</td><td>Find internet-connected devices, open ports, exposed services</td></tr>
+          <tr><td>Maltego</td><td>Desktop app</td><td>Visual link analysis and OSINT graph mapping</td></tr>
+          <tr><td>theHarvester</td><td>CLI</td><td>Email, subdomain, and employee enumeration from public sources</td></tr>
+          <tr><td>Sherlock</td><td>Python/CLI</td><td>Username search across 300+ social platforms</td></tr>
+          <tr><td>SpiderFoot</td><td>Web/CLI</td><td>Automated OSINT collection from 100+ sources</td></tr>
+          <tr><td>OSINT Framework</td><td>Reference</td><td>Directory of all public OSINT sources by data type</td></tr>
+        </tbody>
+      </table>
+
+      <h2>Network & Infrastructure</h2>
+      <table class="learn-table">
+        <thead><tr><th>Tool</th><th>Purpose</th><th>Requires</th></tr></thead>
+        <tbody>
+          <tr><td>Nmap</td><td>Port scanning and service detection</td><td class="warn">Authorisation</td></tr>
+          <tr><td>Wireshark</td><td>Packet capture and analysis</td><td class="good">Your own network</td></tr>
+          <tr><td>Burp Suite</td><td>Web application testing proxy</td><td class="warn">Authorisation</td></tr>
+          <tr><td>Masscan</td><td>High-speed port scanner</td><td class="warn">Authorisation</td></tr>
+          <tr><td>dig / nslookup</td><td>DNS queries from command line</td><td class="good">Freely usable</td></tr>
+          <tr><td>curl</td><td>HTTP requests and header inspection</td><td class="good">Freely usable</td></tr>
+        </tbody>
+      </table>
+
+      <h2>Learning Platforms</h2>
+      <table class="learn-table">
+        <thead><tr><th>Platform</th><th>Level</th><th>Cost</th><th>Best for</th></tr></thead>
+        <tbody>
+          <tr><td>TryHackMe</td><td>Beginner–Intermediate</td><td>Free + £10/mo</td><td>Structured learning paths, browser-based labs</td></tr>
+          <tr><td>HackTheBox</td><td>Intermediate–Advanced</td><td>Free + €14/mo</td><td>Real-world machines, CTF competitions</td></tr>
+          <tr><td>PicoCTF</td><td>Beginner</td><td>Free</td><td>CTF competitions, university-grade challenges</td></tr>
+          <tr><td>PortSwigger Web Academy</td><td>All levels</td><td>Free</td><td>Web application security — best free resource available</td></tr>
+          <tr><td>SANS courses</td><td>Advanced</td><td>$5,000+</td><td>Deep technical training with certs (GIAC)</td></tr>
+          <tr><td>Cybrary</td><td>All levels</td><td>Free + $69/mo</td><td>Video courses for most major certs</td></tr>
+        </tbody>
+      </table>
+
+      <h2>Privacy Tools</h2>
+      <table class="learn-table">
+        <thead><tr><th>Tool</th><th>Purpose</th><th>Cost</th></tr></thead>
+        <tbody>
+          <tr><td>uBlock Origin</td><td>Ad and tracker blocking — browser extension</td><td class="good">Free</td></tr>
+          <tr><td>Bitwarden</td><td>Password manager — open source, cross-platform</td><td class="good">Free</td></tr>
+          <tr><td>ProtonMail / Proton</td><td>Encrypted email and cloud storage</td><td class="good">Free tier</td></tr>
+          <tr><td>Mullvad VPN</td><td>No-logs VPN, anonymous signup</td><td>€5/mo</td></tr>
+          <tr><td>Signal</td><td>End-to-end encrypted messaging</td><td class="good">Free</td></tr>
+          <tr><td>Tor Browser</td><td>Anonymised browsing via onion routing</td><td class="good">Free</td></tr>
+          <tr><td>ExifTool</td><td>Remove metadata (GPS, device info) from files</td><td class="good">Free</td></tr>
+        </tbody>
+      </table>
+
+      <a href="index.html" class="learn-tool-link">⚡ Back to ReconKit Toolkit →</a>
+    </article>
+
+  </main>
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-left">
+      <div class="footer-brand">
+        <svg class="footer-hex" viewBox="0 0 9290 10550" fill="currentColor" style="fill-rule:evenodd;clip-rule:evenodd;" xmlns="http://www.w3.org/2000/svg">
+          <path d="M7738.643,8437.781c-229.147,205.572 -467.789,389.697 -703.908,565.479c-1114.948,830.036 -2030.496,1278.165 -2386.121,1546.74c-355.625,-268.575 -1271.173,-716.704 -2386.121,-1546.74c-992.158,-738.624 -2028.857,-1624.56 -2218.492,-3629.979c-111.076,-1174.645 409.417,-2019.546 -40.326,-3703.83c1127.549,-252.01 1302.457,-501.795 2350.921,-926.39c1008.709,-408.496 2249.348,-679.248 2294.019,-743.06c44.67,63.812 1285.309,334.564 2294.019,743.06c592.116,239.789 905.621,423.824 1269.45,583.993l-404.946,443.285c-292.314,-138.849 -597.246,-297.542 -1080.732,-493.339c-770.318,-311.955 -1676.519,-542.881 -2077.79,-662.424c-401.271,119.543 -1307.472,350.469 -2077.79,662.424c-888.25,359.714 -1173.841,594.193 -1885.724,810.47c113.005,657.268 90.599,1193.023 38.614,1685.485c-55.892,529.474 -157.93,999.179 -106.212,1546.096c168.79,1784.975 1105.891,2564.706 1988.987,3222.137c849.226,632.217 1582.847,1043.31 2042.125,1322.249c459.279,-278.939 1192.899,-690.032 2042.125,-1322.249c78.746,-58.623 157.921,-118.219 236.942,-179.413l10.745,11.292c39.325,41.324 93.875,64.716 150.92,64.716l649.296,0Zm1441.876,-6254.901c-232.519,1355.506 171.895,2141.487 72.709,3190.401c-108.025,1142.381 -490.921,1921.492 -983.874,2517.039l-399.044,-428.385c406.495,-515.525 718.763,-1184.225 809.416,-2142.885c51.717,-546.917 -50.321,-1016.622 -106.212,-1546.096c-29.149,-276.132 -48.998,-565.875 -40.89,-883.02l647.896,-707.054Z"/>
+          <path d="M757.074,3054.361l2588.592,0c1143.381,107.417 1565.839,1035.322 1578.218,1703.075c10.329,557.218 -357.32,1576.962 -1358.002,1636.875c174.967,48.746 177.763,233.521 222.301,355.162c216.286,590.721 489.896,1028.26 1209.106,1479.975l-1313.774,0c-611.476,-348.765 -891.708,-931.44 -1062.969,-1704.033l-1036.612,-901.862l1728.68,0c348.713,-6.941 648.748,-425.699 648.473,-842.599c-0.269,-408.086 -295.963,-829.191 -625.202,-809.025l-2652.218,-1.256l73.405,-916.313Z"/>
+          <path d="M8300.537,8229.448l-1211.191,0l-2165.462,-2275.57l-1.89,1971.713c-468.466,-295.407 -790.094,-766.552 -989.084,-1384.469c666.399,-244.93 1058.169,-743.455 1169.424,-1501.014l3313.419,-3627.119c231.004,89.548 500.173,172.882 874.126,256.461c-10.72,40.147 -20.889,79.818 -30.529,119.028l-3450.495,3765.555l-1.504,-1.094l2493.186,2676.509Z"/>
+          <path d="M3165.897,2908.978l-203.126,-206.747c494.867,-486.198 1203.521,-674.932 1686.307,-673.384c443.551,1.422 1099.958,141.388 1678.029,669.793l-195.548,213.928c-511.238,-467.314 -1091.141,-592.63 -1483.41,-593.888c-424.208,-1.36 -1047.43,163.092 -1482.253,590.297Z"/>
+          <path d="M2564.238,2420.863l-205.523,-204.364c649.341,-653.023 1503.795,-959.2 2290.191,-957.612c750.353,1.514 1553.165,256.371 2282.588,942.656l-198.607,211.091c-666.486,-627.07 -1398.956,-862.529 -2084.566,-863.912c-715.711,-1.444 -1493.108,277.817 -2084.083,872.142Z"/>
+        </svg>
+        <span class="footer-brand-text">ReconKit</span>
+      </div>
+      <span class="footer-tagline">Digital Privacy Advocates</span>
+    </div>
+    <div class="footer-right">
+      <div class="footer-social">
+        <a href="#" class="footer-social-link" title="GitHub" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+        </a>
+        <a href="#" class="footer-social-link" title="X" aria-label="X">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg>
+        </a>
+        <a href="#" class="footer-social-link" title="Telegram" aria-label="Telegram">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+        </a>
+        <a href="#" class="footer-social-link" title="LinkedIn" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </a>
+        <a href="#" class="footer-social-link" title="Instagram" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+        </a>
+        <a href="mailto:#" class="footer-social-link" title="Email" aria-label="Email">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        </a>
+      </div>
+      <div class="footer-bottom-row">
+        <span>&#169; 2026 ReconKit</span>
+        <span class="footer-link-divider">&#183;</span>
+        <a href="#" class="footer-link">Privacy</a>
+        <span class="footer-link-divider">|</span>
+        <a href="#" class="footer-link">Terms</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Theme system (same as main app)
+(function initTheme() {
+  const saved = localStorage.getItem('rk_theme');
+  const sysDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const theme = saved || (sysDark ? 'dark' : 'light');
+  document.documentElement.setAttribute('data-theme', theme);
+})();
+
+function toggleTheme() {
+  const current = document.documentElement.getAttribute('data-theme') || 'dark';
+  const next = current === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  localStorage.setItem('rk_theme', next);
+  const btn = document.getElementById('themeToggle');
+  if (btn) btn.textContent = next === 'dark' ? '🌙' : '☀️';
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  // Theme toggle
+  const btn = document.getElementById('themeToggle');
+  if (btn) {
+    const theme = document.documentElement.getAttribute('data-theme') || 'dark';
+    btn.textContent = theme === 'dark' ? '🌙' : '☀️';
+    btn.addEventListener('click', toggleTheme);
+  }
+
+  // Hamburger for mobile
+  document.getElementById('hamburger')?.addEventListener('click', () => {
+    document.getElementById('navTools')?.classList.toggle('mobile-open');
+  });
+
+  // Article navigation
+  const links = document.querySelectorAll('.learn-sidebar-link');
+  links.forEach(link => {
+    link.addEventListener('click', () => {
+      const id = link.dataset.article;
+      // Update sidebar
+      links.forEach(l => l.classList.remove('active'));
+      link.classList.add('active');
+      // Update articles
+      document.querySelectorAll('.learn-article').forEach(a => a.classList.remove('active'));
+      const article = document.getElementById('art-' + id);
+      if (article) {
+        article.classList.add('active');
+        // Scroll to top of main on mobile
+        document.querySelector('.learn-main')?.scrollTo(0, 0);
+        window.scrollTo(0, 0);
+      }
+    });
+  });
+
+  // System theme change listener
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+    if (!localStorage.getItem('rk_theme')) {
+      const theme = e.matches ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', theme);
+      const toggleBtn = document.getElementById('themeToggle');
+      if (toggleBtn) toggleBtn.textContent = theme === 'dark' ? '🌙' : '☀️';
+    }
+  });
+});
+</script>
+</body>
+</html>

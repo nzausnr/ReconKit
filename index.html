@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ReconKit — OSINT & Security Toolkit</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="nav-brand">
+    <svg class="brand-hex" viewBox="0 0 9290 10550" fill="currentColor" style="fill-rule:evenodd;clip-rule:evenodd;" xmlns="http://www.w3.org/2000/svg">
+      <path d="M7738.643,8437.781c-229.147,205.572 -467.789,389.697 -703.908,565.479c-1114.948,830.036 -2030.496,1278.165 -2386.121,1546.74c-355.625,-268.575 -1271.173,-716.704 -2386.121,-1546.74c-992.158,-738.624 -2028.857,-1624.56 -2218.492,-3629.979c-111.076,-1174.645 409.417,-2019.546 -40.326,-3703.83c1127.549,-252.01 1302.457,-501.795 2350.921,-926.39c1008.709,-408.496 2249.348,-679.248 2294.019,-743.06c44.67,63.812 1285.309,334.564 2294.019,743.06c592.116,239.789 905.621,423.824 1269.45,583.993l-404.946,443.285c-292.314,-138.849 -597.246,-297.542 -1080.732,-493.339c-770.318,-311.955 -1676.519,-542.881 -2077.79,-662.424c-401.271,119.543 -1307.472,350.469 -2077.79,662.424c-888.25,359.714 -1173.841,594.193 -1885.724,810.47c113.005,657.268 90.599,1193.023 38.614,1685.485c-55.892,529.474 -157.93,999.179 -106.212,1546.096c168.79,1784.975 1105.891,2564.706 1988.987,3222.137c849.226,632.217 1582.847,1043.31 2042.125,1322.249c459.279,-278.939 1192.899,-690.032 2042.125,-1322.249c78.746,-58.623 157.921,-118.219 236.942,-179.413l10.745,11.292c39.325,41.324 93.875,64.716 150.92,64.716l649.296,0Zm1441.876,-6254.901c-232.519,1355.506 171.895,2141.487 72.709,3190.401c-108.025,1142.381 -490.921,1921.492 -983.874,2517.039l-399.044,-428.385c406.495,-515.525 718.763,-1184.225 809.416,-2142.885c51.717,-546.917 -50.321,-1016.622 -106.212,-1546.096c-29.149,-276.132 -48.998,-565.875 -40.89,-883.02l647.896,-707.054Z"/>
+      <path d="M757.074,3054.361l2588.592,0c1143.381,107.417 1565.839,1035.322 1578.218,1703.075c10.329,557.218 -357.32,1576.962 -1358.002,1636.875c174.967,48.746 177.763,233.521 222.301,355.162c216.286,590.721 489.896,1028.26 1209.106,1479.975l-1313.774,0c-611.476,-348.765 -891.708,-931.44 -1062.969,-1704.033l-1036.612,-901.862l1728.68,0c348.713,-6.941 648.748,-425.699 648.473,-842.599c-0.269,-408.086 -295.963,-829.191 -625.202,-809.025l-2652.218,-1.256l73.405,-916.313Z"/>
+      <path d="M8300.537,8229.448l-1211.191,0l-2165.462,-2275.57l-1.89,1971.713c-468.466,-295.407 -790.094,-766.552 -989.084,-1384.469c666.399,-244.93 1058.169,-743.455 1169.424,-1501.014l3313.419,-3627.119c231.004,89.548 500.173,172.882 874.126,256.461c-10.72,40.147 -20.889,79.818 -30.529,119.028l-3450.495,3765.555l-1.504,-1.094l2493.186,2676.509Z"/>
+      <path d="M3165.897,2908.978l-203.126,-206.747c494.867,-486.198 1203.521,-674.932 1686.307,-673.384c443.551,1.422 1099.958,141.388 1678.029,669.793l-195.548,213.928c-511.238,-467.314 -1091.141,-592.63 -1483.41,-593.888c-424.208,-1.36 -1047.43,163.092 -1482.253,590.297Z"/>
+      <path d="M2564.238,2420.863l-205.523,-204.364c649.341,-653.023 1503.795,-959.2 2290.191,-957.612c750.353,1.514 1553.165,256.371 2282.588,942.656l-198.607,211.091c-666.486,-627.07 -1398.956,-862.529 -2084.566,-863.912c-715.711,-1.444 -1493.108,277.817 -2084.083,872.142Z"/>
+    </svg>
+    <span class="brand-name">ReconKit</span>
+    <span class="brand-tag">v1.0</span>
+  </div>
+
+  <div class="nav-tools" id="navTools">
+    <button class="nav-btn active" data-tool="exposure">
+      <span class="nav-icon">◉</span> Exposure
+    </button>
+    <button class="nav-btn" data-tool="ip">
+      <span class="nav-icon">◈</span> IP Lookup
+    </button>
+    <button class="nav-btn" data-tool="domain">
+      <span class="nav-icon">◇</span> Domain
+    </button>
+    <button class="nav-btn" data-tool="dns">
+      <span class="nav-icon">◆</span> DNS
+    </button>
+    <button class="nav-btn" data-tool="ssl">
+      <span class="nav-icon">◐</span> SSL
+    </button>
+    <button class="nav-btn" data-tool="headers">
+      <span class="nav-icon">≡</span> Headers
+    </button>
+    <button class="nav-btn" data-tool="breach">
+      <span class="nav-icon">⚠</span> Breach
+    </button>
+    <button class="nav-btn" data-tool="username">
+      <span class="nav-icon">@</span> Username
+    </button>
+    <button class="nav-btn" data-tool="utils">
+      <span class="nav-icon">⚙</span> Utilities
+    </button>
+    <a class="nav-btn" href="learn.html" style="text-decoration:none">
+      <span class="nav-icon">▸</span> Learn
+    </a>
+  </div>
+
+  <div class="nav-right">
+    <div class="live-indicator">
+      <span class="live-dot"></span>
+      <span>LIVE</span>
+    </div>
+    <button class="theme-toggle" id="themeToggle" title="Toggle light/dark mode">🌙</button>
+    <button class="settings-btn" id="settingsBtn" title="API Keys">
+      <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16">
+        <path fill-rule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"/>
+      </svg>
+    </button>
+    <button class="hamburger" id="hamburger">☰</button>
+  </div>
+</nav>
+
+<!-- MAIN: YOUR EXPOSURE -->
+<main class="exposure-main" id="exposureMain">
+
+  <div class="exposure-header">
+    <div class="exposure-title-block">
+      <div class="exposure-eyebrow">// LIVE CAPTURE — SESSION ACTIVE</div>
+      <h1 class="exposure-h1">Your Digital Exposure</h1>
+      <p class="exposure-sub">Everything below is visible to <em>every</em> website you visit — with zero permissions required</p>
+    </div>
+    <div class="scan-block">
+      <div class="scan-meta">
+        <span id="scanLabel" class="scan-label">INITIALISING CAPTURE</span>
+        <span id="scanPct" class="scan-pct">0%</span>
+      </div>
+      <div class="scan-track">
+        <div class="scan-fill" id="scanFill"></div>
+      </div>
+      <div class="scan-status" id="scanStatus">Scanning 45+ data points...</div>
+    </div>
+  </div>
+
+  <!-- FINGERPRINT GRID -->
+  <div class="fp-grid">
+
+    <!-- NETWORK IDENTITY -->
+    <div class="fp-section">
+      <div class="fp-section-header">
+        <span class="section-bullet">◈</span>
+        <span>Network Identity</span>
+      </div>
+      <div class="fp-card fp-card--large">
+        <div class="fp-label">IP Address</div>
+        <div class="fp-value fp-value--ip loading" id="v-ip">Resolving...</div>
+      </div>
+      <div class="fp-card">
+        <div class="fp-label">Internet Provider</div>
+        <div class="fp-value loading" id="v-isp">Resolving...</div>
+      </div>
+      <div class="fp-card">
+        <div class="fp-label">Location</div>
+        <div class="fp-value loading" id="v-loc">Resolving...</div>
+      </div>
+      <div class="fp-card">
+        <div class="fp-label">Region</div>
+        <div class="fp-value loading" id="v-reg">Resolving...</div>
+      </div>
+      <div class="fp-card fp-card--alert">
+        <div class="fp-label">
+          WebRTC Real IP
+          <span class="fp-badge fp-badge--warn">VPN Bypass</span>
+        </div>
+        <div class="fp-value loading" id="v-webrtc">Probing...</div>
+      </div>
+      <div class="fp-card">
+        <div class="fp-label">VPN / Proxy</div>
+        <div class="fp-value loading" id="v-vpn">Checking...</div>
+      </div>
+    </div>
+
+    <!-- DEVICE PROFILE -->
+    <div class="fp-section">
+      <div class="fp-section-header">
+        <span class="section-bullet">◈</span>
+        <span>Device Profile</span>
+      </div>
+      <div class="fp-card">
+        <div class="fp-label">Operating System</div>
+        <div class="fp-value" id="v-os">—</div>
+      </div>
+      <div class="fp-card">
+        <div class="fp-label">Browser</div>
+        <div class="fp-value" id="v-browser">—</div>
+      </div>
+      <div class="fp-card">
+        <div class="fp-label">Screen Resolution</div>
+        <div class="fp-value" id="v-screen">—</div>
+      </div>
+      <div class="fp-card">
+        <div class="fp-label">GPU / Renderer</div>
+        <div class="fp-value fp-value--small" id="v-gpu">—</div>
+      </div>
+      <div class="fp-card">
+        <div class="fp-label">WebGL Fingerprint</div>
+        <div class="fp-value fp-value--hash" id="v-webgl-hash">Generating...</div>
+      </div>
+      <div class="fp-card">
+        <div class="fp-label">CPU Cores</div>
+        <div class="fp-value" id="v-cpu">—</div>
+      </div>
+      <div class="fp-card">
+        <div class="fp-label">Device Memory</div>
+        <div class="fp-value" id="v-ram">—</div>
+      </div>
+    </div>
+
+    <!-- BROWSER SIGNALS -->
+    <div class="fp-section">
+      <div class="fp-section-header">
+        <span class="section-bullet">◈</span>
+        <span>Browser Signals</span>
+      </div>
+      <div class="fp-card">
+        <div class="fp-label">Language</div>
+        <div class="fp-value" id="v-lang">—</div>
+      </div>
+      <div class="fp-card">
+        <div class="fp-label">Languages (Full)</div>
+        <div class="fp-value fp-value--small" id="v-langs">—</div>
+      </div>
+      <div class="fp-card">
+        <div class="fp-label">Timezone</div>
+        <div class="fp-value" id="v-tz">—</div>
+      </div>
+      <div class="fp-card">
+        <div class="fp-label">Connection Type</div>
+        <div class="fp-value" id="v-conn">—</div>
+      </div>
+      <div class="fp-card">
+        <div class="fp-label">Battery Status</div>
+        <div class="fp-value" id="v-battery">—</div>
+      </div>
+      <div class="fp-card">
+        <div class="fp-label">Do Not Track</div>
+        <div class="fp-value" id="v-dnt">—</div>
+      </div>
+      <div class="fp-card">
+        <div class="fp-label">Accessibility</div>
+        <div class="fp-value fp-value--small" id="v-a11y">—</div>
+      </div>
+      <div class="fp-card">
+        <div class="fp-label">Screen Orientation</div>
+        <div class="fp-value" id="v-orientation">—</div>
+      </div>
+    </div>
+
+    <!-- TRACKING VECTORS -->
+    <div class="fp-section">
+      <div class="fp-section-header">
+        <span class="section-bullet">◈</span>
+        <span>Tracking Vectors</span>
+      </div>
+      <div class="fp-card fp-card--alert">
+        <div class="fp-label">
+          Canvas Fingerprint
+          <span class="fp-badge fp-badge--info">Unique ID</span>
+        </div>
+        <div class="fp-value fp-value--hash" id="v-canvas">Generating...</div>
+      </div>
+      <div class="fp-card fp-card--alert">
+        <div class="fp-label">
+          Installed Fonts
+          <span class="fp-badge fp-badge--warn">Detectable</span>
+        </div>
+        <div class="fp-value" id="v-fonts">Scanning...</div>
+        <div class="fp-value fp-value--hash" style="font-size:11px;margin-top:4px" id="v-fonts-hash">—</div>
+      </div>
+      <div class="fp-card fp-card--alert">
+        <div class="fp-label">
+          Audio Fingerprint
+          <span class="fp-badge fp-badge--info">Unique ID</span>
+        </div>
+        <div class="fp-value fp-value--hash" id="v-audio">Rendering...</div>
+      </div>
+      <div class="fp-card">
+        <div class="fp-label">Cookies</div>
+        <div class="fp-value" id="v-cookies">—</div>
+      </div>
+      <div class="fp-card">
+        <div class="fp-label">Local Storage</div>
+        <div class="fp-value" id="v-storage">—</div>
+      </div>
+      <div class="fp-card">
+        <div class="fp-label">Ad Blocker</div>
+        <div class="fp-value" id="v-adblock">—</div>
+      </div>
+      <div class="fp-card">
+        <div class="fp-label">Touch Screen</div>
+        <div class="fp-value" id="v-touch">—</div>
+      </div>
+      <div class="fp-card">
+        <div class="fp-label">WebRTC Leak</div>
+        <div class="fp-value" id="v-webrtc-local" style="font-size:12px">—</div>
+      </div>
+      <div class="fp-card">
+        <div class="fp-label">Browser Plugins</div>
+        <div class="fp-value fp-value--small" id="v-plugins">—</div>
+      </div>
+    </div>
+
+    <!-- FINGERPRINT METRICS -->
+    <div class="fp-section">
+      <div class="fp-section-header">
+        <span class="section-bullet">◈</span>
+        <span>Fingerprint Score</span>
+      </div>
+      <div class="fp-card fp-card--large">
+        <div class="fp-label">Uniqueness Score</div>
+        <div class="fp-value" id="v-uniqueness-score" style="font-size: 24px; font-weight: 700; color: var(--amber);">—%</div>
+        <div class="fp-value fp-value--small" id="v-uniqueness-estimate" style="margin-top: 8px; color: var(--text-muted)">—</div>
+      </div>
+    </div>
+
+    <!-- RISK BREAKDOWN -->
+    <div class="fp-section fp-section--risk-breakdown">
+      <div class="fp-section-header">
+        <span class="section-bullet">⚠</span>
+        <span>Risk Breakdown by Signal</span>
+      </div>
+      <p style="font-size:12px;color:var(--text-muted);margin-bottom:12px;padding:0 12px">Each data point above is rated by tracking risk. HIGH signals uniquely identify you across sites.</p>
+      <div id="risk-breakdown-container" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;padding:0 12px 12px 12px;margin-bottom:0">
+        <!-- Populated by JavaScript -->
+      </div>
+    </div>
+
+  </div><!-- /fp-grid -->
+
+  <!-- CTA BLOCK -->
+  <div class="cta-block" id="ctaBlock">
+    <div class="cta-captured" id="ctaCaptured"></div>
+    <div id="cta-buttons-container" style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center">
+      <button class="cta-btn" id="ctaBtn" onclick="openPanel('learn')">
+        <span>This took 3 seconds. Learn how to take it back</span>
+        <span class="cta-arrow">→</span>
+      </button>
+      <button class="cta-btn" id="rescanBtn" style="display:none;border-color:var(--cyan);background:none" onclick="location.reload()">
+        <span>🔄 Re-scan for Changes</span>
+        <span class="cta-arrow">→</span>
+      </button>
+    </div>
+    <p class="cta-sub">No data is stored. This runs entirely in your browser.</p>
+  </div>
+
+</main>
+
+<!-- ─── TOOL PANEL (slides in from right) ─── -->
+<div class="panel-backdrop" id="panelBackdrop" onclick="closePanel()"></div>
+<aside class="tool-panel" id="toolPanel">
+  <div class="panel-header">
+    <div>
+      <div class="panel-eyebrow" id="panelEyebrow">RECONKIT TOOL</div>
+      <div class="panel-title" id="panelTitle">Tool Name</div>
+    </div>
+    <button class="panel-close" onclick="closePanel()">✕</button>
+  </div>
+  <div class="panel-body" id="panelBody">
+    <!-- Dynamically loaded -->
+  </div>
+</aside>
+
+<!-- ─── SETTINGS MODAL ─── -->
+<div class="modal-overlay" id="settingsModal">
+  <div class="modal">
+    <div class="modal-header">
+      <span>API Key Settings</span>
+      <button class="modal-close" onclick="closeSettings()">✕</button>
+    </div>
+    <div class="modal-body">
+      <p class="modal-note">Keys are saved locally in your browser. Never sent anywhere except the respective API.</p>
+      <div class="api-row">
+        <label>AbuseIPDB <a href="https://www.abuseipdb.com/register" target="_blank" rel="noopener">Get free key ↗</a></label>
+        <input type="text" id="key-abuseipdb" placeholder="Paste your AbuseIPDB key...">
+      </div>
+      <div class="api-row">
+        <label>VirusTotal <a href="https://www.virustotal.com/gui/join-us" target="_blank" rel="noopener">Get free key ↗</a></label>
+        <input type="text" id="key-virustotal" placeholder="Paste your VirusTotal key...">
+      </div>
+      <div class="api-row">
+        <label>HaveIBeenPwned <a href="https://haveibeenpwned.com/API/Key" target="_blank" rel="noopener">Get key ($3.50/mo) ↗</a></label>
+        <input type="text" id="key-hibp" placeholder="Paste your HIBP key...">
+      </div>
+      <button class="btn-primary" onclick="saveAPIKeys()">Save Keys</button>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-left">
+      <div class="footer-brand">
+        <svg class="footer-hex" viewBox="0 0 9290 10550" fill="currentColor" style="fill-rule:evenodd;clip-rule:evenodd;" xmlns="http://www.w3.org/2000/svg">
+          <path d="M7738.643,8437.781c-229.147,205.572 -467.789,389.697 -703.908,565.479c-1114.948,830.036 -2030.496,1278.165 -2386.121,1546.74c-355.625,-268.575 -1271.173,-716.704 -2386.121,-1546.74c-992.158,-738.624 -2028.857,-1624.56 -2218.492,-3629.979c-111.076,-1174.645 409.417,-2019.546 -40.326,-3703.83c1127.549,-252.01 1302.457,-501.795 2350.921,-926.39c1008.709,-408.496 2249.348,-679.248 2294.019,-743.06c44.67,63.812 1285.309,334.564 2294.019,743.06c592.116,239.789 905.621,423.824 1269.45,583.993l-404.946,443.285c-292.314,-138.849 -597.246,-297.542 -1080.732,-493.339c-770.318,-311.955 -1676.519,-542.881 -2077.79,-662.424c-401.271,119.543 -1307.472,350.469 -2077.79,662.424c-888.25,359.714 -1173.841,594.193 -1885.724,810.47c113.005,657.268 90.599,1193.023 38.614,1685.485c-55.892,529.474 -157.93,999.179 -106.212,1546.096c168.79,1784.975 1105.891,2564.706 1988.987,3222.137c849.226,632.217 1582.847,1043.31 2042.125,1322.249c459.279,-278.939 1192.899,-690.032 2042.125,-1322.249c78.746,-58.623 157.921,-118.219 236.942,-179.413l10.745,11.292c39.325,41.324 93.875,64.716 150.92,64.716l649.296,0Zm1441.876,-6254.901c-232.519,1355.506 171.895,2141.487 72.709,3190.401c-108.025,1142.381 -490.921,1921.492 -983.874,2517.039l-399.044,-428.385c406.495,-515.525 718.763,-1184.225 809.416,-2142.885c51.717,-546.917 -50.321,-1016.622 -106.212,-1546.096c-29.149,-276.132 -48.998,-565.875 -40.89,-883.02l647.896,-707.054Z"/>
+          <path d="M757.074,3054.361l2588.592,0c1143.381,107.417 1565.839,1035.322 1578.218,1703.075c10.329,557.218 -357.32,1576.962 -1358.002,1636.875c174.967,48.746 177.763,233.521 222.301,355.162c216.286,590.721 489.896,1028.26 1209.106,1479.975l-1313.774,0c-611.476,-348.765 -891.708,-931.44 -1062.969,-1704.033l-1036.612,-901.862l1728.68,0c348.713,-6.941 648.748,-425.699 648.473,-842.599c-0.269,-408.086 -295.963,-829.191 -625.202,-809.025l-2652.218,-1.256l73.405,-916.313Z"/>
+          <path d="M8300.537,8229.448l-1211.191,0l-2165.462,-2275.57l-1.89,1971.713c-468.466,-295.407 -790.094,-766.552 -989.084,-1384.469c666.399,-244.93 1058.169,-743.455 1169.424,-1501.014l3313.419,-3627.119c231.004,89.548 500.173,172.882 874.126,256.461c-10.72,40.147 -20.889,79.818 -30.529,119.028l-3450.495,3765.555l-1.504,-1.094l2493.186,2676.509Z"/>
+          <path d="M3165.897,2908.978l-203.126,-206.747c494.867,-486.198 1203.521,-674.932 1686.307,-673.384c443.551,1.422 1099.958,141.388 1678.029,669.793l-195.548,213.928c-511.238,-467.314 -1091.141,-592.63 -1483.41,-593.888c-424.208,-1.36 -1047.43,163.092 -1482.253,590.297Z"/>
+          <path d="M2564.238,2420.863l-205.523,-204.364c649.341,-653.023 1503.795,-959.2 2290.191,-957.612c750.353,1.514 1553.165,256.371 2282.588,942.656l-198.607,211.091c-666.486,-627.07 -1398.956,-862.529 -2084.566,-863.912c-715.711,-1.444 -1493.108,277.817 -2084.083,872.142Z"/>
+        </svg>
+        <span class="footer-brand-text">ReconKit</span>
+      </div>
+      <span class="footer-tagline">Digital Privacy Advocates</span>
+    </div>
+    <div class="footer-right">
+      <div class="footer-social">
+        <a href="#" class="footer-social-link" title="GitHub" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+        </a>
+        <a href="#" class="footer-social-link" title="X" aria-label="X">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg>
+        </a>
+        <a href="#" class="footer-social-link" title="Telegram" aria-label="Telegram">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+        </a>
+        <a href="#" class="footer-social-link" title="LinkedIn" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </a>
+        <a href="#" class="footer-social-link" title="Instagram" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+        </a>
+        <a href="mailto:#" class="footer-social-link" title="Email" aria-label="Email">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        </a>
+      </div>
+      <div class="footer-bottom-row">
+        <span>&#169; 2026 ReconKit</span>
+        <span class="footer-link-divider">&#183;</span>
+        <a href="#" class="footer-link">Privacy</a>
+        <span class="footer-link-divider">|</span>
+        <a href="#" class="footer-link">Terms</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
