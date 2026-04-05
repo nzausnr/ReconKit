@@ -181,6 +181,13 @@ function runScan(onComplete) {
   }, 55);
 }
 
+function withTimeout(promise, ms, fallback) {
+  return Promise.race([
+    promise,
+    new Promise(resolve => setTimeout(() => resolve(fallback), ms))
+  ]);
+}
+
 // ─── FINGERPRINT DETECTION ────────────────────────────────────
 function set(id, value, className) {
   const el = document.getElementById(id);
@@ -547,6 +554,16 @@ const TOOLTIP_TEXTS = {
   'langs': 'Language preferences reveal location, education level, and regional information.',
   'a11y': 'Accessibility preferences reveal disabilities or physical considerations to trackers.',
   'orientation': 'Screen orientation combined with resolution creates a fingerprinting vector.',
+  'ip': 'Your public IP reveals your location and ISP to every website. A VPN replaces it with the VPN server IP.',
+  'isp': 'Your Internet provider is visible to all websites and narrows your location significantly.',
+  'loc': 'Location is derived from your IP. Usually accurate to city level. A VPN changes this.',
+  'vpn': 'ReconKit checks if your IP belongs to a known VPN or hosting provider.',
+  'screen': 'Screen resolution and pixel density contribute to your fingerprint profile.',
+  'dnt': 'Do Not Track is ignored by most websites. Having it enabled can itself be a fingerprinting signal.',
+  'adblock': 'Ad blockers are detectable. Ironically this is a fingerprinting signal — though the privacy benefit outweighs the cost.',
+  'touch': 'Touch point count helps narrow down your device type.',
+  'cpu': 'CPU core count is visible and contributes a small but real fingerprint signal.',
+  'ram': 'RAM is exposed via deviceMemory API, rounded to nearest power of 2.',
 };
 
 function attachTooltip(elementId, key) {
@@ -554,6 +571,7 @@ function attachTooltip(elementId, key) {
   if (!el || !TOOLTIP_TEXTS[key]) return;
   
   el.style.cursor = 'help';
+  el.dataset.tooltip = key;
   el.title = TOOLTIP_TEXTS[key];
   
   // Add info icon marker
@@ -565,9 +583,43 @@ function attachTooltip(elementId, key) {
     icon.style.opacity = '0.6';
     icon.style.fontSize = '11px';
     icon.style.cursor = 'help';
+    icon.dataset.tooltip = key;
     label.appendChild(icon);
   }
 }
+
+(function initTooltipEngine() {
+  const tooltip = document.createElement('div');
+  tooltip.id = 'rk-tooltip';
+  tooltip.style.cssText = 'position:absolute;left:-9999px;top:-9999px;pointer-events:none;z-index:99999;padding:10px 12px;border-radius:8px;background:rgba(10,24,40,0.96);color:#f8f9fb;font-size:12px;line-height:1.4;max-width:280px;opacity:0;transition:opacity 0.15s ease;';
+  document.body.appendChild(tooltip);
+
+  let activeEl = null;
+
+  window.addEventListener('mouseover', e => {
+    const target = e.target.closest('[data-tooltip]');
+    if (!target || target === activeEl) return;
+    const key = target.dataset.tooltip;
+    if (!key || !TOOLTIP_TEXTS[key]) return;
+    activeEl = target;
+    tooltip.textContent = TOOLTIP_TEXTS[key];
+    const rect = target.getBoundingClientRect();
+    const left = Math.min(window.innerWidth - 300, rect.left + window.pageXOffset);
+    const top = rect.bottom + window.pageYOffset + 8;
+    tooltip.style.left = `${left}px`;
+    tooltip.style.top = `${top}px`;
+    tooltip.style.opacity = '1';
+  });
+
+  window.addEventListener('mouseout', e => {
+    const target = e.target.closest('[data-tooltip]');
+    if (!target || target !== activeEl) return;
+    activeEl = null;
+    tooltip.style.opacity = '0';
+    tooltip.style.left = '-9999px';
+    tooltip.style.top = '-9999px';
+  });
+})();
 
 // ─── PHASE 1: DISPLAY RISK BREAKDOWN ────────────────────────
 function displayRiskBreakdown() {
@@ -839,6 +891,7 @@ async function runFingerprint() {
   set('v-browser', browserDisplay);
   
   set('v-screen',  `${screen.width} × ${screen.height} px  ·  ${window.devicePixelRatio}x DPI`);
+  attachTooltip('v-screen', 'screen');
   
   // Enhanced language detection
   const lang = navigator.language + (navigator.languages?.length > 1 ? ` (${navigator.languages.join(', ')})` : '');
@@ -851,15 +904,18 @@ async function runFingerprint() {
   signals.tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
   
   set('v-cpu',     navigator.hardwareConcurrency ? `${navigator.hardwareConcurrency} logical cores` : 'Unavailable');
+  attachTooltip('v-cpu', 'cpu');
   signals.cpu = navigator.hardwareConcurrency || 0;
   
   set('v-ram',     navigator.deviceMemory ? `≥ ${navigator.deviceMemory} GB` : 'Unavailable');
+  attachTooltip('v-ram', 'ram');
   set('v-gpu',     getGPU());
   signals.gpu = getGPU();
   
   set('v-cookies', navigator.cookieEnabled ? 'Enabled' : 'Disabled', navigator.cookieEnabled ? 'val--warn' : 'val--good');
   set('v-storage', (() => { try { localStorage.setItem('_rk','1'); localStorage.removeItem('_rk'); return 'Available'; } catch { return 'Blocked'; } })());
   set('v-dnt',     navigator.doNotTrack === '1' ? 'Enabled ✓' : 'Disabled', navigator.doNotTrack === '1' ? 'val--good' : 'val--warn');
+  attachTooltip('v-dnt', 'dnt');
   
   // Enhanced accessibility/media queries
   const a11yInfo = [];
@@ -875,6 +931,7 @@ async function runFingerprint() {
   attachTooltip('v-orientation', 'orientation');
   
   set('v-touch',   navigator.maxTouchPoints > 0 ? `Yes (${navigator.maxTouchPoints} points)` : 'No');
+  attachTooltip('v-touch', 'touch');
   signals.touch = navigator.maxTouchPoints > 0 ? 1 : 0;
   
   set('v-session', new Date().toLocaleString());
@@ -912,7 +969,11 @@ async function runFingerprint() {
   // ─── CANVAS FINGERPRINT ─────────────────────────────────────────
   const raw = getCanvasHash();
   hashStr(raw).then(hash => {
-    set('v-canvas', hash, 'val--info');
+    if (raw === 'canvas blocked') {
+      set('v-canvas', 'Protected by browser ✓', 'val--good');
+    } else {
+      set('v-canvas', hash, 'val--info');
+    }
     attachTooltip('v-canvas', 'canvas');
     signals.canvas = true;
   });
@@ -921,27 +982,39 @@ async function runFingerprint() {
   signals.screen = `${screen.width}x${screen.height}`;
 
   // ─── FONT DETECTION ─────────────────────────────────────────────
-  detectInstalledFonts().then(fontResult => {
-    set('v-fonts', `${fontResult.count} fonts detected`);
-    set('v-fonts-hash', fontResult.hash, 'val--info');
+  withTimeout(detectInstalledFonts(), 5000, { count: 0, hash: 'blocked', detected: [] }).then(fontResult => {
+    if (fontResult.count === 0 && fontResult.hash === 'blocked') {
+      set('v-fonts', 'Protected by browser ✓', 'val--good');
+      set('v-fonts-hash', fontResult.hash, 'val--info');
+    } else {
+      set('v-fonts', `${fontResult.count} fonts detected`);
+      set('v-fonts-hash', fontResult.hash, 'val--info');
+    }
     attachTooltip('v-fonts', 'fonts');
     signals.fonts = fontResult.count;
   });
 
   // ─── WEBGL FINGERPRINT ──────────────────────────────────────────
-  getWebGLFingerprint().then(webglResult => {
-    // Show top extensions inline
+  withTimeout(getWebGLFingerprint(), 4000, { vendor: 'Blocked', renderer: 'Blocked', hash: 'blocked', extensions: 0 }).then(webglResult => {
     const extDisplay = webglResult.extensions > 0 
       ? `${webglResult.hash} (${webglResult.extensions} ext.)`
       : webglResult.hash;
-    set('v-webgl-hash', extDisplay, 'val--info');
+    if (webglResult.hash === 'blocked' && webglResult.vendor === 'Blocked') {
+      set('v-webgl-hash', 'Protected by browser ✓', 'val--good');
+    } else {
+      set('v-webgl-hash', extDisplay, 'val--info');
+    }
     attachTooltip('v-webgl-hash', 'webgl');
     signals.webgl = true;
   });
 
   // ─── AUDIO FINGERPRINT ──────────────────────────────────────────
-  getAudioFingerprint().then(audioResult => {
-    set('v-audio', audioResult.hash, 'val--info');
+  withTimeout(getAudioFingerprint(), 4000, { hash: 'blocked' }).then(audioResult => {
+    if (!audioResult.hash || audioResult.hash === 'blocked') {
+      set('v-audio', 'Protected by browser ✓', 'val--good');
+    } else {
+      set('v-audio', audioResult.hash, 'val--info');
+    }
     attachTooltip('v-audio', 'audio');
     signals.audio = true;
   });
@@ -983,6 +1056,7 @@ async function runFingerprint() {
   // ─── AD BLOCKER ──────────────────────────────────────────────────
   detectAdBlocker().then(blocked => {
     set('v-adblock', blocked ? 'Detected ✓' : 'Not detected', blocked ? 'val--good' : 'val--warn');
+    attachTooltip('v-adblock', 'adblock');
   });
 
   // ─── IP GEOLOCATION ──────────────────────────────────────────────
@@ -993,12 +1067,16 @@ async function runFingerprint() {
       set('v-loc', `${d.city || '—'}, ${d.country_name || '—'}`);
       set('v-reg', `${d.region || '—'} · ${d.org?.split(' AS')[0] || ''}`);
       set('v-isp', d.org || '—');
+      attachTooltip('v-ip', 'ip');
+      attachTooltip('v-isp', 'isp');
+      attachTooltip('v-loc', 'loc');
       
       // VPN detection heuristic
       const vpnWords = ['vpn','proxy','hosting','cloud','datacenter','digitalocean','linode','vultr','ovh','aws','azure','google'];
       const orgLower = (d.org || '').toLowerCase();
       const mightVpn = vpnWords.some(w => orgLower.includes(w));
       set('v-vpn', mightVpn ? 'Likely VPN / hosting IP' : 'No (looks residential)', mightVpn ? 'val--warn' : 'val--good');
+      attachTooltip('v-vpn', 'vpn');
     })
     .catch(() => {
       fetch('https://api.ipify.org?format=json')
