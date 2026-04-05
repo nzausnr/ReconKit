@@ -188,6 +188,13 @@ function withTimeout(promise, ms, fallback) {
   ]);
 }
 
+function fetchWithTimeout(url, ms = 3000) {
+  return Promise.race([
+    fetch(url),
+    new Promise((_, reject) => setTimeout(() => reject(new Error('Timeout')), ms))
+  ]);
+}
+
 // ─── FINGERPRINT DETECTION ────────────────────────────────────
 function set(id, value, className) {
   const el = document.getElementById(id);
@@ -1066,7 +1073,7 @@ async function runFingerprint() {
   });
 
   // ─── IP GEOLOCATION ──────────────────────────────────────────────
-  fetch('https://ipapi.co/json/')
+  fetchWithTimeout('https://ipapi.co/json/', 3000)
     .then(r => r.json())
     .then(d => {
       set('v-ip',  d.ip || '—', 'val--info');
@@ -1085,11 +1092,13 @@ async function runFingerprint() {
       attachTooltip('v-vpn', 'vpn');
     })
     .catch(() => {
-      fetch('https://api.ipify.org?format=json')
+      fetchWithTimeout('https://api.ipify.org?format=json', 3000)
         .then(r => r.json())
         .then(d => set('v-ip', d.ip || '—', 'val--info'))
-        .catch(() => set('v-ip', 'Could not resolve'));
-      ['v-loc','v-reg','v-isp','v-vpn'].forEach(id => set(id, 'Unavailable'));
+        .catch(() => {
+          set('v-ip', 'Blocked', 'val--warn');
+          ['v-loc','v-reg','v-isp','v-vpn'].forEach(id => set(id, 'Blocked'));
+        });
     });
 
   // ─── CALCULATE & DISPLAY UNIQUENESS SCORE (AFTER SHORT DELAY) ────
