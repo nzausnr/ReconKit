@@ -26,16 +26,31 @@
   </div>
 
   <div class="nav-tools" id="navTools">
-    <a class="nav-btn" href="index.html" style="text-decoration:none"><span class="nav-icon">◉</span> Exposure</a>
-    <a class="nav-btn" href="index.html" style="text-decoration:none"><span class="nav-icon">◈</span> IP Lookup</a>
-    <a class="nav-btn" href="index.html" style="text-decoration:none"><span class="nav-icon">◇</span> Domain</a>
-    <a class="nav-btn" href="index.html" style="text-decoration:none"><span class="nav-icon">◆</span> DNS</a>
-    <a class="nav-btn" href="index.html" style="text-decoration:none"><span class="nav-icon">◐</span> SSL</a>
-    <a class="nav-btn" href="index.html" style="text-decoration:none"><span class="nav-icon">≡</span> Headers</a>
-    <a class="nav-btn" href="index.html" style="text-decoration:none"><span class="nav-icon">⚠</span> Breach</a>
-    <a class="nav-btn" href="index.html" style="text-decoration:none"><span class="nav-icon">@</span> Username</a>
-    <a class="nav-btn" href="index.html" style="text-decoration:none"><span class="nav-icon">⚙</span> Utilities</a>
-    <a class="nav-btn active" href="learn.html" style="text-decoration:none"><span class="nav-icon">▸</span> Learn Page</a>
+    <div class="nav-section">
+      <a class="nav-btn" href="index.html" style="text-decoration:none">
+        <span class="nav-icon">◉</span> Exposure
+      </a>
+      <div class="nav-divider"></div>
+    </div>
+
+    <div class="nav-section">
+      <div class="nav-section-title">Tools</div>
+      <a class="nav-btn" href="index.html" style="text-decoration:none"><span class="nav-icon">◈</span> IP Lookup</a>
+      <a class="nav-btn" href="index.html" style="text-decoration:none"><span class="nav-icon">◇</span> Domain</a>
+      <a class="nav-btn" href="index.html" style="text-decoration:none"><span class="nav-icon">◆</span> DNS</a>
+      <a class="nav-btn" href="index.html" style="text-decoration:none"><span class="nav-icon">◐</span> SSL</a>
+      <a class="nav-btn" href="index.html" style="text-decoration:none"><span class="nav-icon">≡</span> Headers</a>
+      <a class="nav-btn" href="index.html" style="text-decoration:none"><span class="nav-icon">⚠</span> Breach</a>
+      <a class="nav-btn" href="index.html" style="text-decoration:none"><span class="nav-icon">@</span> Username</a>
+      <a class="nav-btn" href="index.html" style="text-decoration:none"><span class="nav-icon">⚙</span> Utilities</a>
+      <div class="nav-divider"></div>
+    </div>
+
+    <div class="nav-section nav-section-links">
+      <a class="nav-btn active" href="learn.html" style="text-decoration:none"><span class="nav-icon">▸</span> Learn</a>
+      <a class="nav-btn" href="privacy.html" style="text-decoration:none"><span class="nav-icon">🛡</span> Privacy</a>
+      <a class="nav-btn" href="terms.html" style="text-decoration:none"><span class="nav-icon">📋</span> Terms</a>
+    </div>
   </div>
 
   <div class="nav-right">
@@ -780,8 +795,19 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Hamburger for mobile
+  const navTools = document.getElementById('navTools');
   document.getElementById('hamburger')?.addEventListener('click', () => {
-    document.getElementById('navTools')?.classList.toggle('mobile-open');
+    navTools?.classList.toggle('mobile-open');
+  });
+
+  // Close drawer when clicking on nav links (mobile only)
+  const navLinks = navTools?.querySelectorAll('.nav-btn');
+  navLinks?.forEach(link => {
+    link.addEventListener('click', () => {
+      if (window.matchMedia('(max-width: 640px)').matches) {
+        navTools.classList.remove('mobile-open');
+      }
+    });
   });
 
   // Article navigation

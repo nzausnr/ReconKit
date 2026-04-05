@@ -1258,19 +1258,90 @@ a:hover { text-decoration: underline; }
 }
 
 @media (max-width: 640px) {
-  .nav-tools { display: none; }
-  .nav-tools.mobile-open {
-    display: flex;
+  .nav-tools {
+    display: none;
     flex-direction: column;
     position: fixed;
     top: var(--navbar-h);
-    left: 0; right: 0;
-    background: var(--bg2);
-    border-bottom: 1px solid var(--border);
-    padding: 12px;
+    left: 0;
+    bottom: 0;
+    width: 70vw;
+    max-width: 320px;
+    background: var(--bg);
+    border-right: 1px solid var(--border);
     z-index: 899;
-    gap: 4px;
+    overflow-y: auto;
+    padding: 0;
+    gap: 0;
+    transform: translateX(-100%);
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
+
+  .nav-tools.mobile-open {
+    display: flex;
+    transform: translateX(0);
+  }
+
+  .nav-tools.mobile-open::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: -1;
+    backdrop-filter: blur(2px);
+  }
+
+  .nav-section {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding: 12px 0;
+  }
+
+  .nav-section-title {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    color: var(--text-muted);
+    padding: 8px 16px;
+    text-transform: uppercase;
+  }
+
+  .nav-btn {
+    width: 100%;
+    justify-content: flex-start;
+    padding: 10px 16px;
+    border-radius: 0;
+    color: var(--text-muted);
+    font-size: 13px;
+    transition: color 0.2s, background 0.2s;
+  }
+
+  .nav-btn:hover {
+    background: var(--surface);
+    color: var(--text);
+  }
+
+  .nav-btn.active {
+    background: var(--cyan-dim);
+    color: var(--cyan);
+    border-left: 3px solid var(--cyan);
+    padding-left: 13px;
+  }
+
+  .nav-divider {
+    height: 1px;
+    background: var(--border);
+    margin: 4px 0;
+    opacity: 0.5;
+  }
+
+  .nav-section-links {
+    margin-top: auto;
+    padding: 16px 0;
+    border-top: 1px solid var(--border);
+  }
+
   .hamburger { display: block; }
   .fp-grid { grid-template-columns: 1fr; }
   .exposure-main { padding: 20px 16px 60px; }

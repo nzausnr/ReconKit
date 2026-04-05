@@ -137,9 +137,29 @@ document.querySelectorAll('.nav-btn').forEach(btn => {
   });
 });
 
-// Hamburger
-document.getElementById('hamburger').addEventListener('click', () => {
-  document.getElementById('navTools').classList.toggle('mobile-open');
+// Hamburger & Mobile Drawer
+const hamburger = document.getElementById('hamburger');
+const navTools = document.getElementById('navTools');
+const navButtons = navTools.querySelectorAll('.nav-btn[data-tool]');
+
+hamburger?.addEventListener('click', () => {
+  navTools.classList.toggle('mobile-open');
+});
+
+// Close drawer when tool is selected (mobile only)
+navButtons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    if (window.matchMedia('(max-width: 640px)').matches) {
+      navTools.classList.remove('mobile-open');
+    }
+  });
+});
+
+// Close drawer when clicking on the overlay (outside the drawer)
+navTools?.addEventListener('click', (e) => {
+  if (e.target === navTools && window.matchMedia('(max-width: 640px)').matches) {
+    navTools.classList.remove('mobile-open');
+  }
 });
 
 // ─── COPY UTILITY ─────────────────────────────────────────────
