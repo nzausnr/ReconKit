@@ -1460,7 +1460,7 @@ const TOOL_RENDERERS = {
       <div style="text-align:center;padding:40px;">
         <h2 style="color:var(--cyan);margin-bottom:20px;">📚 Learn & Protect</h2>
         <p style="color:var(--text-muted);margin-bottom:30px;">Educational content has moved to a dedicated page for better organization.</p>
-        <a href="learn" class="btn-primary" style="display:inline-block;">Visit Learn Page →</a>
+        <a href="learn.html" class="btn-primary" style="display:inline-block;">Visit Learn Page →</a>
       </div>
     `;
   },
