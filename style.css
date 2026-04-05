@@ -152,6 +152,41 @@ a:hover { text-decoration: underline; }
   background: var(--cyan-dim);
 }
 
+/* Desktop: nav section/link structure (from mobile drawer rewrite) */
+.nav-section {
+  display: flex;
+  align-items: center;
+}
+.nav-section ul {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.nav-category-title { display: none; }
+.nav-link {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-family: var(--font-ui);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  padding: 6px 12px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  transition: color 0.2s, background 0.2s;
+  text-decoration: none;
+}
+.nav-link:hover { color: var(--text); background: var(--surface); }
+.nav-link.active { color: var(--cyan); background: var(--cyan-dim); }
+
 .nav-icon {
   font-size: 11px;
   opacity: 0.7;
@@ -1258,6 +1293,8 @@ a:hover { text-decoration: underline; }
 }
 
 @media (max-width: 640px) {
+  .navbar { z-index: 1001; }
+
   .nav-tools {
     position: fixed;
     left: -65vw;
@@ -1283,12 +1320,14 @@ a:hover { text-decoration: underline; }
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
     visibility: hidden;
-    transition: visibility 0.3s ease;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
     z-index: 999;
   }
 
   .nav-overlay.visible {
+    opacity: 1;
     visibility: visible;
   }
 
@@ -1338,7 +1377,6 @@ a:hover { text-decoration: underline; }
   .nav-link.active {
     background: rgba(255, 255, 255, 0.1);
     color: #fff;
-    padding-left: 20px;
   }
 
   .nav-icon {
@@ -1359,7 +1397,8 @@ a:hover { text-decoration: underline; }
     color: rgba(255, 255, 255, 0.7);
     font-size: 20px;
     transition: color 0.2s ease;
-    z-index: 1001;
+    position: relative;
+    z-index: 1;
   }
 
   .hamburger:hover {

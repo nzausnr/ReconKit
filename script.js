@@ -115,7 +115,7 @@ function openPanel(tool) {
   backdrop.classList.add('open');
 
   // Update nav active state
-  document.querySelectorAll('.nav-btn').forEach(b => {
+  document.querySelectorAll('.nav-link[data-tool]').forEach(b => {
     b.classList.toggle('active', b.dataset.tool === tool);
   });
 }
@@ -123,51 +123,39 @@ function openPanel(tool) {
 function closePanel() {
   document.getElementById('toolPanel').classList.remove('open');
   document.getElementById('panelBackdrop').classList.remove('open');
-  document.querySelectorAll('.nav-btn').forEach(b => {
+  document.querySelectorAll('.nav-link[data-tool]').forEach(b => {
     b.classList.toggle('active', b.dataset.tool === 'exposure');
   });
 }
 
-// Nav buttons
-document.querySelectorAll('.nav-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const tool = btn.dataset.tool;
-    if (tool === 'exposure') { closePanel(); return; }
-    openPanel(tool);
-  });
-});
-
-// Hamburger & Mobile Drawer
+// Nav buttons (desktop + mobile)
 const hamburger = document.getElementById('hamburger');
 const navTools = document.getElementById('navTools');
 const navOverlay = document.getElementById('navOverlay');
-const navLinks = navTools.querySelectorAll('.nav-link[data-tool]');
 
+function closeDrawer() {
+  navTools.classList.remove('open');
+  navOverlay.classList.remove('visible');
+  document.body.classList.remove('nav-open');
+}
+
+document.querySelectorAll('.nav-link[data-tool]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const tool = btn.dataset.tool;
+    if (tool === 'exposure') { closePanel(); } else { openPanel(tool); }
+    closeDrawer();
+  });
+});
+
+// Hamburger toggle
 hamburger?.addEventListener('click', () => {
   navTools.classList.toggle('open');
   navOverlay.classList.toggle('visible');
   document.body.classList.toggle('nav-open');
 });
 
-// Close drawer when tool is selected (mobile only)
-navLinks.forEach(btn => {
-  btn.addEventListener('click', () => {
-    if (window.matchMedia('(max-width: 640px)').matches) {
-      navTools.classList.remove('open');
-      navOverlay.classList.remove('visible');
-      document.body.classList.remove('nav-open');
-    }
-  });
-});
-
-// Close drawer when clicking on the overlay (outside the drawer)
-navOverlay?.addEventListener('click', () => {
-  if (window.matchMedia('(max-width: 640px)').matches) {
-    navTools.classList.remove('open');
-    navOverlay.classList.remove('visible');
-    document.body.classList.remove('nav-open');
-  }
-});
+// Close drawer when clicking the overlay
+navOverlay?.addEventListener('click', closeDrawer);
 
 // ─── COPY UTILITY ─────────────────────────────────────────────
 function copyText(text, btn) {
@@ -1100,20 +1088,22 @@ async function runFingerprint() {
   });
 
   // ─── IP GEOLOCATION ──────────────────────────────────────────────
-  fetchWithTimeout('https://ipapi.co/json/', 3000)
+  fetchWithTimeout('https://ipwho.is/', 4000)
     .then(r => r.json())
     .then(d => {
+      if (!d.success) throw new Error('API error');
+      const org = d.connection?.isp || d.connection?.org || '—';
       set('v-ip',  d.ip || '—', 'val--info');
-      set('v-loc', `${d.city || '—'}, ${d.country_name || '—'}`);
-      set('v-reg', `${d.region || '—'} · ${d.org?.split(' AS')[0] || ''}`);
-      set('v-isp', d.org || '—');
+      set('v-loc', `${d.city || '—'}, ${d.country || '—'}`);
+      set('v-reg', `${d.region || '—'} · ${org.split(' AS')[0]}`);
+      set('v-isp', org);
       attachTooltip('v-ip', 'ip');
       attachTooltip('v-isp', 'isp');
       attachTooltip('v-loc', 'loc');
-      
+
       // VPN detection heuristic
       const vpnWords = ['vpn','proxy','hosting','cloud','datacenter','digitalocean','linode','vultr','ovh','aws','azure','google'];
-      const orgLower = (d.org || '').toLowerCase();
+      const orgLower = org.toLowerCase();
       const mightVpn = vpnWords.some(w => orgLower.includes(w));
       set('v-vpn', mightVpn ? 'Likely VPN / hosting IP' : 'No (looks residential)', mightVpn ? 'val--warn' : 'val--good');
       attachTooltip('v-vpn', 'vpn');
@@ -1121,7 +1111,10 @@ async function runFingerprint() {
     .catch(() => {
       fetchWithTimeout('https://api.ipify.org?format=json', 3000)
         .then(r => r.json())
-        .then(d => set('v-ip', d.ip || '—', 'val--info'))
+        .then(d => {
+          set('v-ip', d.ip || '—', 'val--info');
+          ['v-loc','v-reg','v-isp','v-vpn'].forEach(id => set(id, 'Unavailable'));
+        })
         .catch(() => {
           set('v-ip', 'Blocked', 'val--warn');
           ['v-loc','v-reg','v-isp','v-vpn'].forEach(id => set(id, 'Blocked'));
@@ -1524,12 +1517,14 @@ async function runIPLookup() {
   res.innerHTML = '<div class="tool-loading">QUERYING IP INTELLIGENCE</div>';
 
   try {
-    const d = await fetch(`https://ipapi.co/${ip}/json/`).then(r => r.json());
-    if (d.error) throw new Error(d.reason);
+    const d = await fetch(`https://ipwho.is/${ip}`).then(r => r.json());
+    if (!d.success) throw new Error(d.message || 'API error');
 
-    const vpnWords = ['vpn','proxy','hosting','cloud','datacenter','digitalocenter','digitalocean','linode','vultr','aws','azure','gcp','ovh','hetzner'];
-    const mightVpn = vpnWords.some(w => (d.org||'').toLowerCase().includes(w));
-    const isDatacenter = ['aws','azure','gcp','digitalocean','linode','ovh','hetzner'].some(w => (d.org||'').toLowerCase().includes(w));
+    const org = d.connection?.isp || d.connection?.org || '—';
+    const asn = d.connection?.asn ? `AS${d.connection.asn}` : '—';
+    const vpnWords = ['vpn','proxy','hosting','cloud','datacenter','digitalocean','linode','vultr','aws','azure','gcp','ovh','hetzner'];
+    const mightVpn = vpnWords.some(w => org.toLowerCase().includes(w));
+    const isDatacenter = ['aws','azure','gcp','digitalocean','linode','ovh','hetzner'].some(w => org.toLowerCase().includes(w));
 
     // Get abuse score
     let abuseScore = 0;
@@ -1565,8 +1560,8 @@ async function runIPLookup() {
       <div class="result-section">
         <div class="result-label">Network</div>
         <div class="result-row"><span class="result-key">IP Address</span><span class="result-val good">${d.ip}</span></div>
-        <div class="result-row"><span class="result-key">ISP / Org</span><span class="result-val">${d.org || '—'}</span></div>
-        <div class="result-row"><span class="result-key">ASN</span><span class="result-val">${d.asn || '—'}</span></div>
+        <div class="result-row"><span class="result-key">ISP / Org</span><span class="result-val">${org}</span></div>
+        <div class="result-row"><span class="result-key">ASN</span><span class="result-val">${asn}</span></div>
         <div class="result-row"><span class="result-key">Type</span><span class="result-val ${isDatacenter ? 'warn' : mightVpn ? 'warn' : 'good'}">${isDatacenter ? 'Datacenter' : mightVpn ? 'VPN/Proxy' : 'Residential'}</span></div>
         ${abuseHTML}
         ${rdnsHTML}
@@ -1574,7 +1569,7 @@ async function runIPLookup() {
 
       <div class="result-section">
         <div class="result-label">Location</div>
-        <div class="result-row"><span class="result-key">Country</span><span class="result-val">${d.country_name} (${d.country_code})</span></div>
+        <div class="result-row"><span class="result-key">Country</span><span class="result-val">${d.country} (${d.country_code})</span></div>
         <div class="result-row"><span class="result-key">Region</span><span class="result-val">${d.region || '—'}</span></div>
         <div class="result-row"><span class="result-key">City</span><span class="result-val">${d.city || '—'}</span></div>
         <div class="result-row"><span class="result-key">Postal Code</span><span class="result-val">${d.postal || '—'}</span></div>
