@@ -591,7 +591,7 @@ function attachTooltip(elementId, key) {
 (function initTooltipEngine() {
   const tooltip = document.createElement('div');
   tooltip.id = 'rk-tooltip';
-  tooltip.style.cssText = 'position:absolute;left:-9999px;top:-9999px;pointer-events:none;z-index:99999;padding:10px 12px;border-radius:8px;background:rgba(10,24,40,0.96);color:#f8f9fb;font-size:12px;line-height:1.4;max-width:280px;opacity:0;transition:opacity 0.15s ease;';
+  tooltip.style.cssText = 'position:fixed;left:-9999px;top:-9999px;pointer-events:none;z-index:99999;padding:10px 12px;border-radius:8px;background:rgba(10,24,40,0.96);color:#f8f9fb;font-size:12px;line-height:1.4;max-width:280px;opacity:0;transition:opacity 0.15s ease;';
   document.body.appendChild(tooltip);
 
   let activeEl = null;
@@ -604,8 +604,10 @@ function attachTooltip(elementId, key) {
     activeEl = target;
     tooltip.textContent = TOOLTIP_TEXTS[key];
     const rect = target.getBoundingClientRect();
-    const left = Math.min(window.innerWidth - 300, rect.left + window.pageXOffset);
-    const top = rect.bottom + window.pageYOffset + 8;
+    const scrollX = window.scrollX || window.pageXOffset || 0;
+    const scrollY = window.scrollY || window.pageYOffset || 0;
+    const left = Math.min(window.innerWidth - 300, rect.left + scrollX);
+    const top = rect.bottom + scrollY + 8;
     tooltip.style.left = `${left}px`;
     tooltip.style.top = `${top}px`;
     tooltip.style.opacity = '1';
