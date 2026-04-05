@@ -140,25 +140,32 @@ document.querySelectorAll('.nav-btn').forEach(btn => {
 // Hamburger & Mobile Drawer
 const hamburger = document.getElementById('hamburger');
 const navTools = document.getElementById('navTools');
-const navButtons = navTools.querySelectorAll('.nav-btn[data-tool]');
+const navOverlay = document.getElementById('navOverlay');
+const navLinks = navTools.querySelectorAll('.nav-link[data-tool]');
 
 hamburger?.addEventListener('click', () => {
-  navTools.classList.toggle('mobile-open');
+  navTools.classList.toggle('open');
+  navOverlay.classList.toggle('visible');
+  document.body.classList.toggle('nav-open');
 });
 
 // Close drawer when tool is selected (mobile only)
-navButtons.forEach(btn => {
+navLinks.forEach(btn => {
   btn.addEventListener('click', () => {
     if (window.matchMedia('(max-width: 640px)').matches) {
-      navTools.classList.remove('mobile-open');
+      navTools.classList.remove('open');
+      navOverlay.classList.remove('visible');
+      document.body.classList.remove('nav-open');
     }
   });
 });
 
 // Close drawer when clicking on the overlay (outside the drawer)
-navTools?.addEventListener('click', (e) => {
-  if (e.target === navTools && window.matchMedia('(max-width: 640px)').matches) {
-    navTools.classList.remove('mobile-open');
+navOverlay?.addEventListener('click', () => {
+  if (window.matchMedia('(max-width: 640px)').matches) {
+    navTools.classList.remove('open');
+    navOverlay.classList.remove('visible');
+    document.body.classList.remove('nav-open');
   }
 });
 
