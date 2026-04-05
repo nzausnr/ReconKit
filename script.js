@@ -1448,15 +1448,11 @@ const TOOL_RENDERERS = {
   // ── LEARN & PROTECT ─────────────────────────────────────────
   learn(body) {
     body.innerHTML = `
-      <div class="learn-nav">
-        <button class="learn-nav-item active" onclick="showLearn('protect', this)">🛡 How to Protect Yourself</button>
-        <button class="learn-nav-item" onclick="showLearn('tracking', this)">👁 How Websites Track You</button>
-        <button class="learn-nav-item" onclick="showLearn('vpn', this)">🔒 VPNs Explained</button>
-        <button class="learn-nav-item" onclick="showLearn('attacks', this)">⚠ Common Attack Types</button>
-        <button class="learn-nav-item" onclick="showLearn('passwords', this)">🔑 Password Security</button>
-        <button class="learn-nav-item" onclick="showLearn('glossary', this)">📖 Security Glossary</button>
+      <div style="text-align:center;padding:40px;">
+        <h2 style="color:var(--cyan);margin-bottom:20px;">📚 Learn & Protect</h2>
+        <p style="color:var(--text-muted);margin-bottom:30px;">Educational content has moved to a dedicated page for better organization.</p>
+        <a href="learn" class="btn-primary" style="display:inline-block;">Visit Learn Page →</a>
       </div>
-      <div id="learn-container">${LEARN_CONTENT.protect}</div>
     `;
   },
 };
@@ -2370,115 +2366,6 @@ function calcCIDR() {
       <div class="result-row"><span class="result-key">Usable Hosts</span><span class="result-val">${hosts.toLocaleString()}</span></div>
       <div class="result-row"><span class="result-key">Binary Mask</span><span class="result-val" style="font-size:10px">${n2b(mask)}</span></div>
     </div>`;
-}
-
-// ─── LEARN CONTENT ─────────────────────────────────────────────
-const LEARN_CONTENT = {
-  protect: `
-    <h2 class="learn-h2">🛡 How to Protect Yourself</h2>
-    <p class="learn-p">The data on your exposure page is what every website you visit silently collects about you — with no warning, no login, and no permission required. Here's how to significantly reduce what you expose.</p>
-    <div class="learn-tip"><strong>Use a VPN.</strong> A VPN masks your real IP address by routing your traffic through a server in another location. It won't stop all tracking, but it hides your ISP, approximate location, and real IP from every site you visit.</div>
-    <div class="learn-tip"><strong>Use a privacy-focused browser.</strong> Firefox with uBlock Origin, or Brave Browser, block most trackers and fingerprinting attempts by default. Chrome is the worst offender for sharing data with Google.</div>
-    <div class="learn-tip"><strong>Install uBlock Origin.</strong> This free browser extension blocks ads, trackers, and many fingerprinting scripts. It's the single most impactful thing you can do immediately.</div>
-    <div class="learn-tip"><strong>Use a privacy-focused DNS.</strong> Change your DNS to 1.1.1.1 (Cloudflare) or 9.9.9.9 (Quad9) to prevent your ISP from logging every domain you look up.</div>
-    <div class="learn-warn"><strong>Canvas fingerprinting cannot be blocked by a VPN.</strong> Even with a VPN, your browser's canvas fingerprint uniquely identifies you across sites. Use Brave Browser or Firefox with the Privacy Badger extension to mitigate this.</div>
-    <ul class="learn-list">
-      <li>Enable two-factor authentication (2FA) on every account</li>
-      <li>Use a password manager — never reuse passwords</li>
-      <li>Keep your browser and OS updated (patches fix exploits)</li>
-      <li>Be careful what browser extensions you install — they can read all your data</li>
-      <li>Use private/incognito mode for sensitive browsing (it hides from your device, not from websites)</li>
-    </ul>
-  `,
-  tracking: `
-    <h2 class="learn-h2">👁 How Websites Track You</h2>
-    <p class="learn-p">Websites use multiple layered techniques to identify and follow you across the internet — many of which are invisible to the average user and cannot be blocked by simply clearing cookies.</p>
-    <div class="learn-tip"><strong>IP Tracking.</strong> Your IP address is sent with every request you make. Websites log it automatically. It reveals your approximate location and ISP, and can be tied to your identity by law enforcement with a warrant.</div>
-    <div class="learn-tip"><strong>Browser Fingerprinting.</strong> Your combination of screen resolution, installed fonts, GPU, browser version, timezone, and dozens of other signals creates a unique "fingerprint" that identifies you even if you clear all cookies. This is what ReconKit demonstrates.</div>
-    <div class="learn-tip"><strong>Third-party cookies.</strong> When a site embeds a Facebook Like button or Google Analytics script, those third parties set cookies that follow you everywhere those scripts appear — which is most of the web.</div>
-    <div class="learn-tip"><strong>Canvas & WebGL fingerprinting.</strong> Your graphics card renders text and images in microscopically unique ways. Sites capture this rendering to create a unique identifier — completely invisible to you.</div>
-    <div class="learn-tip"><strong>WebRTC leaks.</strong> Even behind a VPN, your browser can reveal your real local IP address through WebRTC — a protocol used for video calls and real-time communication. ReconKit checks this for you.</div>
-    <ul class="learn-list">
-      <li>Your browser sends a "User Agent" string — it tells every site your OS, browser version, and device type</li>
-      <li>Keyboard and mouse movement patterns can uniquely identify you (behavioural biometrics)</li>
-      <li>Battery level API can be used as a weak identifier across sites</li>
-      <li>The fonts installed on your system reveal information about your device and region</li>
-    </ul>
-  `,
-  vpn: `
-    <h2 class="learn-h2">🔒 VPNs Explained</h2>
-    <p class="learn-p">A VPN (Virtual Private Network) encrypts your internet traffic and routes it through a server in another location, masking your real IP address from the websites you visit.</p>
-    <div class="learn-tip"><strong>What a VPN DOES protect.</strong> Your IP address from websites. Your traffic from your ISP. Your location (approximately). Your browsing from people on the same WiFi (e.g. coffee shop). Useful for bypassing geographic restrictions.</div>
-    <div class="learn-warn"><strong>What a VPN does NOT protect.</strong> Browser fingerprinting (canvas, WebGL, fonts). Cookies already set on your device. Malware you've already installed. Your Google/Facebook account tracking (they know who you are when you're logged in). DNS leaks if configured incorrectly.</div>
-    <p class="learn-p">A VPN shifts trust from your ISP to your VPN provider. If your VPN logs your activity, you haven't gained much. Choose providers with verified no-log policies.</p>
-    <ul class="learn-list">
-      <li><strong>Mullvad</strong> — Accepts cash payment, no email required, excellent privacy</li>
-      <li><strong>ProtonVPN</strong> — Open source, Swiss jurisdiction, strong privacy record</li>
-      <li><strong>IVPN</strong> — No-logs audited, privacy-first design</li>
-      <li>Avoid free VPNs — they almost always monetise your data</li>
-      <li>Avoid VPNs owned by ad companies or with unclear ownership</li>
-    </ul>
-  `,
-  attacks: `
-    <h2 class="learn-h2">⚠ Common Attack Types</h2>
-    <p class="learn-p">Understanding attack vectors is the first step in defending against them. These are the most common methods attackers use against individuals and organisations.</p>
-    <div class="learn-tip"><strong>Phishing.</strong> Fake emails, messages, or websites that impersonate trusted entities to steal credentials or install malware. The most common attack vector globally. Always verify the sender's actual email domain, not just the display name.</div>
-    <div class="learn-tip"><strong>Man-in-the-Middle (MITM).</strong> Attacker positions themselves between you and the server you're communicating with, intercepting and potentially modifying data. Most dangerous on public WiFi. HTTPS and VPNs mitigate this.</div>
-    <div class="learn-tip"><strong>SQL Injection.</strong> Attacker inserts malicious SQL code into a web form input, manipulating the database behind the site. Can expose entire databases of user data. Prevented by proper input sanitisation and parameterised queries.</div>
-    <div class="learn-tip"><strong>Cross-Site Scripting (XSS).</strong> Malicious JavaScript injected into a legitimate website that runs in victims' browsers — can steal session cookies and redirect users. Prevented by output encoding and Content Security Policy headers.</div>
-    <div class="learn-tip"><strong>Social Engineering.</strong> Manipulating people rather than systems — pretexting, impersonation, urgency tactics. Technical controls can't stop a convincing human. Training and scepticism are the defence.</div>
-    <div class="learn-tip"><strong>Credential Stuffing.</strong> Using lists of leaked username/password pairs from old breaches to try to log into other services. Works because people reuse passwords. Use a password manager and unique passwords everywhere.</div>
-  `,
-  passwords: `
-    <h2 class="learn-h2">🔑 Password Security</h2>
-    <p class="learn-p">Passwords remain the primary authentication mechanism for most systems. Understanding how they're attacked helps you understand why good password hygiene matters.</p>
-    <div class="learn-tip"><strong>Length beats complexity.</strong> A 20-character passphrase of random words is stronger than a 10-character "Tr0ub@dor!" password. Length exponentially increases the time required to crack by brute force.</div>
-    <div class="learn-warn"><strong>Never reuse passwords.</strong> When a service is breached (and they all get breached eventually), attackers try those credentials on every other major service. One reused password can compromise your entire digital life.</div>
-    <div class="learn-tip"><strong>Use a password manager.</strong> Bitwarden (free, open source), 1Password, or KeePass let you use unique, random passwords for every account without memorising them. The master password is the only one you need to remember — make it long and memorable.</div>
-    <div class="learn-tip"><strong>Enable 2FA everywhere.</strong> Two-factor authentication means even if your password is stolen, attackers still can't access your account without the second factor. Use an authenticator app (not SMS where possible).</div>
-    <ul class="learn-list">
-      <li>Use the password generator in this toolkit's Utilities tab</li>
-      <li>Check if your email has been in a breach using the Breach Check tool</li>
-      <li>Never store passwords in plain text files or note apps</li>
-      <li>Don't use personal information in passwords (name, birthday, pet name)</li>
-      <li>Change passwords immediately after a known breach</li>
-    </ul>
-  `,
-  glossary: `
-    <h2 class="learn-h2">📖 Security Glossary</h2>
-    ${[
-      ['OSINT', 'Open Source Intelligence — gathering information from publicly available sources. Everything ReconKit does is OSINT.'],
-      ['IP Address', 'A numerical label assigned to every device on a network. Can reveal your approximate location and ISP.'],
-      ['ASN', 'Autonomous System Number — identifies a network operator (e.g. your ISP or a cloud provider).'],
-      ['DNS', 'Domain Name System — translates human-readable domain names (google.com) into IP addresses computers use.'],
-      ['WHOIS', 'A public database containing registration information about domain names — who owns it, when it expires, registrar details.'],
-      ['TLS/SSL', 'Encryption protocols that secure data in transit between your browser and a web server. The "S" in HTTPS.'],
-      ['VPN', 'Virtual Private Network — encrypts your traffic and masks your IP address by routing through a server elsewhere.'],
-      ['Firewall', 'A security system that monitors and controls incoming and outgoing network traffic based on rules.'],
-      ['Phishing', 'A social engineering attack using fraudulent emails or websites to steal credentials or install malware.'],
-      ['Malware', 'Malicious software — includes viruses, ransomware, spyware, trojans, and adware.'],
-      ['2FA / MFA', 'Two/Multi-Factor Authentication — requires a second proof of identity beyond just a password.'],
-      ['Zero-day', 'A software vulnerability unknown to the vendor, being actively exploited before a patch exists.'],
-      ['MITM', 'Man-in-the-Middle attack — intercepting communications between two parties without their knowledge.'],
-      ['SQL Injection', 'Inserting malicious SQL into input fields to manipulate a database.'],
-      ['XSS', 'Cross-Site Scripting — injecting malicious JavaScript into a legitimate website.'],
-      ['CVE', 'Common Vulnerabilities and Exposures — a public dictionary of known security vulnerabilities.'],
-      ['Penetration Testing', 'Authorised simulated cyberattack on a system to identify and fix vulnerabilities before attackers do.'],
-      ['Social Engineering', 'Manipulating people rather than exploiting technical vulnerabilities to gain unauthorised access.'],
-      ['Ransomware', 'Malware that encrypts victims\' data and demands payment for the decryption key.'],
-      ['Tor', 'The Onion Router — anonymity network that routes traffic through multiple encrypted relays.'],
-    ].map(([term, def]) => `
-      <div style="padding:10px 0;border-bottom:1px solid var(--border)">
-        <div style="font-size:12px;font-weight:700;color:var(--cyan);margin-bottom:4px">${term}</div>
-        <div style="font-size:12px;color:var(--text);line-height:1.7">${def}</div>
-      </div>`).join('')}
-  `,
-};
-
-function showLearn(id, btn) {
-  document.querySelectorAll('.learn-nav-item').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  document.getElementById('learn-container').innerHTML = LEARN_CONTENT[id] || '';
 }
 
 // ─── PHASE 1: IP CONVERTER UTILITY ────────────────────────────
