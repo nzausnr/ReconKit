@@ -588,10 +588,10 @@ function attachTooltip(elementId, key) {
   }
 }
 
-(function initTooltipEngine() {
+function initTooltipEngine() {
   const tooltip = document.createElement('div');
   tooltip.id = 'rk-tooltip';
-  tooltip.style.cssText = 'position:fixed;left:-9999px;top:-9999px;pointer-events:none;z-index:99999;padding:10px 12px;border-radius:8px;background:rgba(10,24,40,0.96);color:#f8f9fb;font-size:12px;line-height:1.4;max-width:280px;opacity:0;transition:opacity 0.15s ease;';
+  tooltip.style.cssText = 'position:fixed;left:-9999px;top:-9999px;pointer-events:none;z-index:100000;padding:10px 12px;border-radius:8px;background:rgba(10,24,40,0.98);color:#f8f9fb;font-size:12px;line-height:1.4;max-width:280px;opacity:0;transition:opacity 0.15s ease;border:1px solid rgba(0,229,255,0.3);box-shadow:0 4px 12px rgba(0,0,0,0.5);';
   document.body.appendChild(tooltip);
 
   let activeEl = null;
@@ -606,7 +606,7 @@ function attachTooltip(elementId, key) {
     const rect = target.getBoundingClientRect();
     const scrollX = window.scrollX || window.pageXOffset || 0;
     const scrollY = window.scrollY || window.pageYOffset || 0;
-    const left = Math.min(window.innerWidth - 300, rect.left + scrollX);
+    const left = Math.min(window.innerWidth - 320, Math.max(10, rect.left + scrollX));
     const top = rect.bottom + scrollY + 8;
     tooltip.style.left = `${left}px`;
     tooltip.style.top = `${top}px`;
@@ -618,10 +618,14 @@ function attachTooltip(elementId, key) {
     if (!target || target !== activeEl) return;
     activeEl = null;
     tooltip.style.opacity = '0';
-    tooltip.style.left = '-9999px';
-    tooltip.style.top = '-9999px';
+    setTimeout(() => {
+      if (!activeEl) {
+        tooltip.style.left = '-9999px';
+        tooltip.style.top = '-9999px';
+      }
+    }, 150);
   });
-})();
+}
 
 // ─── PHASE 1: DISPLAY RISK BREAKDOWN ────────────────────────
 function displayRiskBreakdown() {
@@ -1184,6 +1188,9 @@ window.addEventListener('DOMContentLoaded', () => {
   loadScanHistory();
   runScan();
   runFingerprint();
+  
+  // Initialize tooltip engine after DOM is ready
+  initTooltipEngine();
 });
 
 // ═══════════════════════════════════════════════════════════════
