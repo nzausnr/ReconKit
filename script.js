@@ -1072,37 +1072,32 @@ async function runFingerprint() {
     attachTooltip('v-adblock', 'adblock');
   });
 
-  // ─── IP GEOLOCATION ──────────────────────────────────────────────
-  fetchWithTimeout('https://ipwho.is/', 4000)
+  // ─── IP GEOLOCATION (via ReconKit API Worker) ────────────────────
+  // Calls our own Cloudflare Worker which handles fallback providers
+  // server-side — no more rate limits or CORS failures for visitors
+  fetchWithTimeout('https://reconkit-api.nzau.workers.dev/api/ip?q=self', 7000)
     .then(r => r.json())
     .then(d => {
-      if (!d.success) throw new Error(d.message || 'IP geolocation failed');
-      const isp = d.connection?.isp || '—';
-      set('v-ip',  d.ip || '—', 'val--info');
+      if (d.error) throw new Error(d.error);
+
+      set('v-ip',  d.ip  || '—', 'val--info');
       set('v-loc', `${d.city || '—'}, ${d.country || '—'}`);
-      set('v-reg', `${d.region || '—'} · ${isp.split(' AS')[0] || '—'}`);
-      set('v-isp', isp);
-      attachTooltip('v-ip', 'ip');
+      set('v-reg', `${d.region || '—'} · ${(d.isp || '—').split(' AS')[0]}`);
+      set('v-isp', d.isp || '—');
+      attachTooltip('v-ip',  'ip');
       attachTooltip('v-isp', 'isp');
       attachTooltip('v-loc', 'loc');
 
-      const vpnWords = ['vpn','proxy','hosting','cloud','datacenter','digitalocean','linode','vultr','ovh','aws','azure','google'];
-      const orgLower = isp.toLowerCase();
-      const mightVpn = vpnWords.some(w => orgLower.includes(w));
-      set('v-vpn', mightVpn ? 'Likely VPN / hosting IP' : 'No (looks residential)', mightVpn ? 'val--warn' : 'val--good');
+      const vpnWords = ['vpn','proxy','hosting','cloud','datacenter',
+                        'digitalocean','linode','vultr','ovh','aws','azure','google'];
+      const mightVpn = vpnWords.some(w => (d.isp || '').toLowerCase().includes(w));
+      set('v-vpn', mightVpn ? 'Likely VPN / hosting IP' : 'No (looks residential)',
+          mightVpn ? 'val--warn' : 'val--good');
       attachTooltip('v-vpn', 'vpn');
     })
     .catch(() => {
-      fetchWithTimeout('https://api.ipify.org?format=json', 3000)
-        .then(r => r.json())
-        .then(d => {
-          set('v-ip', d.ip || '—', 'val--info');
-          ['v-loc','v-reg','v-isp','v-vpn'].forEach(id => set(id, 'Unavailable'));
-        })
-        .catch(() => {
-          set('v-ip', 'Blocked', 'val--warn');
-          ['v-loc','v-reg','v-isp','v-vpn'].forEach(id => set(id, 'Blocked'));
-        });
+      set('v-ip', 'Unavailable', 'val--warn');
+      ['v-loc','v-reg','v-isp','v-vpn'].forEach(id => set(id, 'Unavailable'));
     });
 
   // ─── CALCULATE & DISPLAY UNIQUENESS SCORE (AFTER SHORT DELAY) ────
